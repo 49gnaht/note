@@ -3,7 +3,7 @@ import re, json, sys
 SRC = sys.argv[1]; OUT = sys.argv[2]
 RATE = 3.8; PAUSE = {',': 0.22, ':': 0.3, '.': 0.45, '?': 0.45, '!': 0.45}
 s = open(SRC).read()
-scenes = re.findall(r'## Cảnh (\d+) — (.*?) \(.*?\)\n.*?\*\*Lời:\*\*\n(.*?)(?=\n## |\n---)', s, re.S)
+scenes = re.findall(r'## Cảnh (\d+)\s*[—:-]\s*(.*?) \(.*?\)\n.*?\*\*Lời:\*\*\n(.*?)(?=\n## |\n---)', s, re.S)
 t = 0.6; out = []
 for num, name, narr in scenes:
     sents0 = [x.strip() for x in re.split(r'(?<=[.?!])\s+', narr.strip().replace('\n', ' ')) if x.strip()]
