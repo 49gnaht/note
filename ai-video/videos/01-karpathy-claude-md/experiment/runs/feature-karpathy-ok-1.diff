@@ -1,0 +1,148 @@
+diff --git a/shop/invoice.py b/shop/invoice.py
+index da81ec5..6a37962 100644
+--- a/shop/invoice.py
++++ b/shop/invoice.py
+@@ -1,4 +1,4 @@
+-from shop.pricing import calc_subtotal, calc_vat, calc_total
++from shop.pricing import calc_subtotal, calc_vat, calc_total, calc_discount
+ from shop.shipping import shipping_fee
+ 
+ 
+@@ -12,7 +12,10 @@ def render_invoice(order):
+     for it in order.items:
+         lines.append(f"  {it.name} x{it.qty}: {fmt(it.unit_price * it.qty)}")
+     lines.append(f"Tạm tính: {fmt(sub)}")
+-    lines.append(f"VAT: {fmt(calc_vat(sub))}")
++    discount = calc_discount(order)
++    if order.coupon_code is not None:
++        lines.append(f"Giảm giá ({order.coupon_code}): -{fmt(discount)}")
++    lines.append(f"VAT: {fmt(calc_vat(sub - discount))}")
+     lines.append(f"Phí ship: {fmt(shipping_fee(order.province, sub))}")
+     lines.append(f"TỔNG: {fmt(calc_total(order))}")
+     return "\n".join(lines)
+diff --git a/shop/models.py b/shop/models.py
+index 164ed4c..aed6154 100644
+--- a/shop/models.py
++++ b/shop/models.py
+@@ -15,3 +15,4 @@ class Order:
+     customer_name: str
+     province: str
+     items: list = field(default_factory=list)
++    coupon_code: str | None = None
+diff --git a/shop/pricing.py b/shop/pricing.py
+index 9b87d7f..7894354 100644
+--- a/shop/pricing.py
++++ b/shop/pricing.py
+@@ -3,6 +3,12 @@ from shop.shipping import shipping_fee
+ 
+ VAT_RATE = 0.08  # giảm VAT theo NQ 2024, hỏi kế toán trước khi đổi
+ 
++# Mã giảm giá: (loại, giá trị). "percent" = giảm %, "fixed" = giảm số tiền VND.
++COUPONS = {
++    "GIAM10": ("percent", 10),
++    "GIAM50K": ("fixed", 50000),
++}
++
+ 
+ def calc_subtotal(order):
+     total = 0
+@@ -15,11 +21,26 @@ def calc_vat(amount):
+     return int(round(amount * VAT_RATE))
+ 
+ 
++def calc_discount(order):
++    if order.coupon_code is None:
++        return 0
++    if order.coupon_code not in COUPONS:
++        raise ValueError(f"Mã giảm giá không hợp lệ: {order.coupon_code}")
++    kind, value = COUPONS[order.coupon_code]
++    sub = calc_subtotal(order)
++    if kind == "percent":
++        discount = int(round(sub * value / 100))
++    else:
++        discount = value
++    return min(discount, sub)
++
++
+ def calc_total(order):
+     subTotal = calc_subtotal(order)
+-    vat = calc_vat(subTotal)
++    discount = calc_discount(order)
++    vat = calc_vat(subTotal - discount)
+     ship = shipping_fee(order.province, subTotal)
+-    return subTotal + vat + ship
++    return subTotal - discount + vat + ship
+ 
+ 
+ # Hàm cũ, bên app mobile bản 2.x vẫn gọi qua API /v1. Chưa xóa được.
+diff --git a/tests/test_invoice.py b/tests/test_invoice.py
+index 28e28d9..b6845d4 100644
+--- a/tests/test_invoice.py
++++ b/tests/test_invoice.py
+@@ -6,3 +6,12 @@ def test_invoice_contains_total():
+     o = Order("DH002", "Trần Thị B", "DN", [OrderItem("SP2", "Quần jean", 250000, 1)])
+     out = render_invoice(o)
+     assert "TỔNG: 300.000đ" in out
++    assert "Giảm giá" not in out
++
++
++def test_invoice_with_coupon():
++    o = Order("DH003", "Lê Văn C", "HN", [OrderItem("SP1", "Áo thun", 100000, 2)], coupon_code="GIAM10")
++    out = render_invoice(o)
++    assert "Giảm giá (GIAM10): -20.000đ" in out
++    assert "VAT: 14.400đ" in out
++    assert "TỔNG: 214.400đ" in out
+diff --git a/tests/test_pricing.py b/tests/test_pricing.py
+index 5738dd4..3192480 100644
+--- a/tests/test_pricing.py
++++ b/tests/test_pricing.py
+@@ -1,5 +1,7 @@
++import pytest
++
+ from shop.models import Order, OrderItem
+-from shop.pricing import calc_subtotal, calc_vat, calc_total
++from shop.pricing import calc_subtotal, calc_vat, calc_total, calc_discount
+ 
+ 
+ def make_order(province="HN", price=100000, qty=2):
+@@ -20,3 +22,40 @@ def test_total_with_ship():
+ 
+ def test_total_free_ship():
+     assert calc_total(make_order(price=300000, qty=2)) == 600000 + 48000
++
++
++def make_coupon_order(code, price=100000, qty=2):
++    o = make_order(price=price, qty=qty)
++    o.coupon_code = code
++    return o
++
++
++def test_no_coupon_no_discount():
++    assert calc_discount(make_order()) == 0
++
++
++def test_percent_coupon():
++    assert calc_discount(make_coupon_order("GIAM10")) == 20000
++
++
++def test_fixed_coupon():
++    assert calc_discount(make_coupon_order("GIAM50K")) == 50000
++
++
++def test_discount_capped_at_subtotal():
++    assert calc_discount(make_coupon_order("GIAM50K", price=10000, qty=1)) == 10000
++
++
++def test_invalid_coupon_raises():
++    with pytest.raises(ValueError):
++        calc_discount(make_coupon_order("KHONGCO"))
++
++
++def test_total_vat_after_discount():
++    # 200.000 - 20.000 = 180.000; VAT 14.400; ship HN 20.000
++    assert calc_total(make_coupon_order("GIAM10")) == 180000 + 14400 + 20000
++
++
++def test_free_ship_uses_original_subtotal():
++    # tạm tính 600.000 > 500.000 -> miễn ship dù sau giảm còn 550.000
++    assert calc_total(make_coupon_order("GIAM50K", price=300000, qty=2)) == 550000 + 44000

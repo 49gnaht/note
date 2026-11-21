@@ -1,0 +1,251 @@
+1
+00:00:00,600 --> 00:00:03,800
+Tôi giao cho Claude Code đúng một câu: thêm tính năng mã giảm giá.
+
+2
+00:00:04,150 --> 00:00:07,750
+Hơn một phút sau, nó viết xong gần một trăm rưỡi dòng, cả code lẫn test,
+
+3
+00:00:08,100 --> 00:00:13,620
+kèm theo một quyết định kinh doanh: khách mua sáu trăm nghìn, dùng mã giảm hai trăm nghìn, sẽ mất miễn phí giao hàng.
+
+4
+00:00:13,970 --> 00:00:16,850
+Nó có báo lại. Nhưng là sau khi code đã viết xong.
+
+5
+00:00:17,200 --> 00:00:21,680
+Một repo hơn hai trăm ba mươi nghìn sao hứa sửa chuyện này bằng một file sáu mươi lăm dòng.
+
+6
+00:00:22,030 --> 00:00:24,670
+Tôi chạy hai mươi mốt lượt Claude Code thật để kiểm tra.
+
+7
+00:00:25,020 --> 00:00:26,620
+Và file đó có tác dụng thật.
+
+8
+00:00:26,970 --> 00:00:28,810
+Nhưng không phải vì lý do mà tôi nghĩ.
+
+9
+00:00:30,260 --> 00:00:34,740
+Repo này tên là andrej-karpathy-skills. Cốt lõi là một file CLAUDE.md,
+
+10
+00:00:35,090 --> 00:00:37,570
+file hướng dẫn mà Claude Code tự đọc trong mỗi dự án.
+
+11
+00:00:37,920 --> 00:00:42,080
+Nó dựa trên lời phàn nàn của Andrej Karpathy, cựu giám đốc AI của Tesla:
+
+12
+00:00:42,430 --> 00:00:45,870
+AI viết code hay tự giả định mà không hỏi, thích làm phức tạp,
+
+13
+00:00:46,220 --> 00:00:50,300
+một trăm dòng là đủ thì viết một nghìn, và tiện tay sửa cả những gì nó không hiểu hết.
+
+14
+00:00:51,750 --> 00:00:53,430
+File trả lời bằng bốn nguyên tắc.
+
+15
+00:00:53,780 --> 00:00:55,700
+Nghĩ trước khi code: mơ hồ thì hỏi.
+
+16
+00:00:56,050 --> 00:00:58,290
+Đơn giản trước tiên: chỉ viết thứ được yêu cầu.
+
+17
+00:00:58,640 --> 00:01:01,120
+Sửa kiểu phẫu thuật: không đụng thứ không liên quan.
+
+18
+00:01:01,470 --> 00:01:05,630
+Và làm theo mục tiêu: đặt tiêu chí kiểm chứng, như bài test, rồi lặp đến khi đạt.
+
+19
+00:01:07,080 --> 00:01:10,680
+Tôi dựng một mô-đun tính tiền cho cửa hàng trực tuyến: thuế tám phần trăm,
+
+20
+00:01:11,030 --> 00:01:14,310
+phí giao hàng theo tỉnh, miễn phí giao hàng cho đơn từ năm trăm nghìn.
+
+21
+00:01:14,660 --> 00:01:16,260
+Trong đó có sẵn vài cái bẫy.
+
+22
+00:01:16,610 --> 00:01:19,730
+Một hàm cũ trông như code chết, nhưng app mobile vẫn đang gọi.
+
+23
+00:01:20,080 --> 00:01:24,000
+Một dòng ghi chú dặn hỏi kế toán trước khi đổi thuế. Và một lỗi thật.
+
+24
+00:01:24,350 --> 00:01:28,990
+Tôi so ba cách: không dặn gì, thêm đúng một câu "chưa rõ thì hỏi trước", và dùng file của Karpathy.
+
+25
+00:01:29,340 --> 00:01:33,740
+Mỗi cách chạy ba lần. Ở chế độ chạy tự động, "hỏi" nghĩa là Claude dừng lại chờ tôi.
+
+26
+00:01:35,190 --> 00:01:39,750
+Việc đầu tiên: sửa lỗi phí giao hàng, chạy không dặn gì và có file. Kết quả là hòa.
+
+27
+00:01:40,100 --> 00:01:43,220
+Lần nào Claude cũng chỉ sửa đúng một ký tự, thêm một hai bài test.
+
+28
+00:01:43,570 --> 00:01:47,170
+Và không lượt nào sập bẫy: không ai xóa hàm cũ, không ai tự ý đổi thuế.
+
+29
+00:01:47,520 --> 00:01:50,480
+Model bây giờ đã khá kỷ luật. File này không phải phép màu.
+
+30
+00:01:51,930 --> 00:01:54,090
+Việc thứ hai mới thú vị: thêm mã giảm giá.
+
+31
+00:01:54,440 --> 00:01:58,680
+Không dặn gì, Claude viết code ngay, rồi mới liệt kê giả định cho bạn kiểm tra.
+
+32
+00:01:59,030 --> 00:02:02,070
+Còn hai cách kia, cả sáu lần, Claude đều dừng lại.
+
+33
+00:02:02,420 --> 00:02:06,580
+Không dòng code nào, chỉ có năm đến tám câu hỏi: giảm theo phần trăm hay số tiền,
+
+34
+00:02:06,930 --> 00:02:10,450
+thuế tính trước hay sau giảm, ngưỡng miễn phí giao hàng xét trên tiền nào.
+
+35
+00:02:10,800 --> 00:02:13,360
+Kèm một phương án đề xuất, bạn chỉ cần trả lời "ok".
+
+36
+00:02:13,710 --> 00:02:16,350
+Vậy là chỉ một câu dặn đã đủ để AI biết hỏi trước.
+
+37
+00:02:16,700 --> 00:02:19,020
+Đến đây tôi tưởng file sáu mươi lăm dòng là thừa.
+
+38
+00:02:20,470 --> 00:02:24,390
+Rồi tôi trả lời "ok" cho cả hai, không sửa gì. Đây mới là chỗ khác biệt.
+
+39
+00:02:24,740 --> 00:02:30,500
+Với một câu dặn, phương án đề xuất của Claude rất hào phóng: đơn tối thiểu, hạn sử dụng, mức giảm tối đa.
+
+40
+00:02:30,850 --> 00:02:32,930
+Toàn thứ nghe hợp lý, nhưng không ai yêu cầu.
+
+41
+00:02:33,280 --> 00:02:36,560
+Kết quả là từ sáu mươi đến chín mươi dòng code, chưa tính test,
+
+42
+00:02:36,910 --> 00:02:38,910
+trung bình còn nhiều hơn cả khi không dặn gì.
+
+43
+00:02:39,260 --> 00:02:43,340
+Với file của Karpathy, phương án đề xuất là cách đơn giản nhất: một bảng mã,
+
+44
+00:02:43,690 --> 00:02:45,370
+giảm theo phần trăm hoặc số tiền.
+
+45
+00:02:45,720 --> 00:02:47,960
+Chỉ khoảng hai mươi lăm dòng, bằng một phần ba.
+
+46
+00:02:48,310 --> 00:02:51,670
+Ít test hơn, chủ yếu vì ít tính năng hơn, tôi chưa đo độ phủ.
+
+47
+00:02:52,020 --> 00:02:53,940
+Nhưng cái giá là: tính cả lượt hỏi,
+
+48
+00:02:54,290 --> 00:02:57,890
+cả hai cách đều đắt hơn khoảng bảy mươi phần trăm so với không dặn gì.
+
+49
+00:02:58,240 --> 00:03:00,160
+Viết ít không có nghĩa là rẻ hơn.
+
+50
+00:03:01,610 --> 00:03:05,050
+Vậy bài học là: dạy AI hỏi trước thì dễ, một câu là đủ.
+
+51
+00:03:05,400 --> 00:03:08,280
+Còn để AI viết ít, một câu dặn hỏi là chưa đủ.
+
+52
+00:03:08,630 --> 00:03:11,350
+Trong thí nghiệm này, chỉ bản có file giữ được code gọn.
+
+53
+00:03:11,700 --> 00:03:16,580
+Còn một cái bẫy nữa: bản một câu dặn đề xuất đúng chính sách bỏ miễn phí giao hàng cho khách sáu trăm nghìn.
+
+54
+00:03:16,930 --> 00:03:18,610
+Phương án đề xuất cũng là một quyết định.
+
+55
+00:03:18,960 --> 00:03:23,840
+Nếu bạn trả lời "ok" mà không đọc, thì vẫn là AI quyết định thay bạn, chỉ sớm hơn mà thôi.
+
+56
+00:03:25,290 --> 00:03:28,890
+Áp dụng thế nào? Nối file này vào cuối CLAUDE.md của dự án.
+
+57
+00:03:29,240 --> 00:03:31,720
+Có bản plugin, nhưng tôi mới thử dạng file.
+
+58
+00:03:32,070 --> 00:03:36,470
+Nên dùng ở những chỗ một giả định sai rất đắt: tiền, dữ liệu khách hàng, chính sách.
+
+59
+00:03:36,820 --> 00:03:42,420
+Với việc vặt hay bản làm thử, tác giả cũng nói rõ: file này ưu tiên cẩn thận hơn tốc độ, hãy tự cân nhắc.
+
+60
+00:03:42,770 --> 00:03:47,170
+Mẹo quan trọng nhất: thêm luật riêng, ví dụ mọi thay đổi liên quan đến tiền phải hỏi trước.
+
+61
+00:03:47,520 --> 00:03:52,080
+Và đo hiệu quả bằng phần thay đổi trong code: nhỏ hơn, và câu hỏi đến trước khi viết.
+
+62
+00:03:53,530 --> 00:03:56,010
+Sáu mươi lăm dòng text không làm AI thông minh hơn.
+
+63
+00:03:56,360 --> 00:03:59,320
+Nó làm AI biết dừng lại, và biết viết ít đi.

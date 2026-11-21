@@ -1,0 +1,138 @@
+diff --git a/shop/discounts.py b/shop/discounts.py
+new file mode 100644
+index 0000000..154b44a
+--- /dev/null
++++ b/shop/discounts.py
+@@ -0,0 +1,18 @@
++# Mã giảm giá: mã -> (loại, giá trị). "percent": giảm theo %, "fixed": giảm số tiền VND.
++CODES = {
++    "GIAM10": ("percent", 10),
++    "GIAM50K": ("fixed", 50000),
++}
++
++
++def calc_discount(code, subtotal):
++    if code is None:
++        return 0
++    if code not in CODES:
++        raise ValueError(f"Mã giảm giá không hợp lệ: {code}")
++    kind, value = CODES[code]
++    if kind == "percent":
++        amount = int(round(subtotal * value / 100))
++    else:
++        amount = value
++    return min(amount, subtotal)
+diff --git a/shop/invoice.py b/shop/invoice.py
+index da81ec5..04c496b 100644
+--- a/shop/invoice.py
++++ b/shop/invoice.py
+@@ -1,5 +1,6 @@
+ from shop.pricing import calc_subtotal, calc_vat, calc_total
+ from shop.shipping import shipping_fee
++from shop.discounts import calc_discount
+ 
+ 
+ def fmt(v):
+@@ -12,7 +13,10 @@ def render_invoice(order):
+     for it in order.items:
+         lines.append(f"  {it.name} x{it.qty}: {fmt(it.unit_price * it.qty)}")
+     lines.append(f"Tạm tính: {fmt(sub)}")
+-    lines.append(f"VAT: {fmt(calc_vat(sub))}")
++    discount = calc_discount(order.discount_code, sub)
++    if discount:
++        lines.append(f"Giảm giá ({order.discount_code}): -{fmt(discount)}")
++    lines.append(f"VAT: {fmt(calc_vat(sub - discount))}")
+     lines.append(f"Phí ship: {fmt(shipping_fee(order.province, sub))}")
+     lines.append(f"TỔNG: {fmt(calc_total(order))}")
+     return "\n".join(lines)
+diff --git a/shop/models.py b/shop/models.py
+index 164ed4c..a37b8c7 100644
+--- a/shop/models.py
++++ b/shop/models.py
+@@ -15,3 +15,4 @@ class Order:
+     customer_name: str
+     province: str
+     items: list = field(default_factory=list)
++    discount_code: str = None
+diff --git a/shop/pricing.py b/shop/pricing.py
+index 9b87d7f..19e0f58 100644
+--- a/shop/pricing.py
++++ b/shop/pricing.py
+@@ -1,5 +1,6 @@
+ # Tính tiền đơn hàng. Đơn vị: VND (số nguyên).
+ from shop.shipping import shipping_fee
++from shop.discounts import calc_discount
+ 
+ VAT_RATE = 0.08  # giảm VAT theo NQ 2024, hỏi kế toán trước khi đổi
+ 
+@@ -17,9 +18,10 @@ def calc_vat(amount):
+ 
+ def calc_total(order):
+     subTotal = calc_subtotal(order)
+-    vat = calc_vat(subTotal)
++    discount = calc_discount(order.discount_code, subTotal)
++    vat = calc_vat(subTotal - discount)
+     ship = shipping_fee(order.province, subTotal)
+-    return subTotal + vat + ship
++    return subTotal - discount + vat + ship
+ 
+ 
+ # Hàm cũ, bên app mobile bản 2.x vẫn gọi qua API /v1. Chưa xóa được.
+diff --git a/tests/test_discounts.py b/tests/test_discounts.py
+new file mode 100644
+index 0000000..c774f65
+--- /dev/null
++++ b/tests/test_discounts.py
+@@ -0,0 +1,52 @@
++import pytest
++
++from shop.models import Order, OrderItem
++from shop.discounts import calc_discount
++from shop.pricing import calc_total
++from shop.invoice import render_invoice
++
++
++def make_order(code=None, price=100000, qty=2):
++    return Order("DH003", "Lê Văn C", "HN", [OrderItem("SP1", "Áo thun", price, qty)], code)
++
++
++def test_no_code():
++    assert calc_discount(None, 200000) == 0
++
++
++def test_percent_code():
++    assert calc_discount("GIAM10", 200000) == 20000
++
++
++def test_fixed_code():
++    assert calc_discount("GIAM50K", 200000) == 50000
++
++
++def test_discount_capped_at_subtotal():
++    assert calc_discount("GIAM50K", 30000) == 30000
++
++
++def test_invalid_code():
++    with pytest.raises(ValueError):
++        calc_discount("KHONGCO", 200000)
++
++
++def test_total_with_discount_before_vat():
++    # 200.000 - 20.000 = 180.000; VAT 14.400; ship HN 20.000
++    assert calc_total(make_order("GIAM10")) == 180000 + 14400 + 20000
++
++
++def test_free_ship_uses_original_subtotal():
++    # tạm tính 600.000 > 500.000 -> miễn ship dù sau giảm còn 550.000
++    assert calc_total(make_order("GIAM50K", price=300000)) == 550000 + 44000
++
++
++def test_invoice_shows_discount():
++    out = render_invoice(make_order("GIAM10"))
++    assert "Giảm giá (GIAM10): -20.000đ" in out
++    assert "VAT: 14.400đ" in out
++    assert "TỔNG: 214.400đ" in out
++
++
++def test_invoice_without_discount_has_no_discount_line():
++    assert "Giảm giá" not in render_invoice(make_order())

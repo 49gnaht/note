@@ -1,0 +1,40 @@
++++ b/shop/coupon.py
++# Mã giảm giá cho đơn hàng. Đơn vị: VND (số nguyên).
++from dataclasses import dataclass
++from typing import Optional
++
++PERCENT = "percent"  # giảm theo %, value = 10 nghĩa là 10%
++FIXED = "fixed"      # giảm số tiền cố định, value tính bằng VND
++
++
++class CouponError(ValueError):
++    pass
++
++
++@dataclass(frozen=True)
++class Coupon:
++    code: str
++    kind: str
++    value: int
++    min_subtotal: int = 0                # đơn tối thiểu (tạm tính) để được áp mã
++    max_discount: Optional[int] = None   # mức giảm tối đa, dùng cho mã giảm %
++
++    def __post_init__(self):
++        if self.kind not in (PERCENT, FIXED):
++            raise CouponError(f"Loại mã không hợp lệ: {self.kind}")
++        if self.value <= 0:
++            raise CouponError("Giá trị mã phải lớn hơn 0")
++        if self.kind == PERCENT and self.value > 100:
++            raise CouponError("Mã giảm % không được vượt quá 100%")
++
++    def is_applicable(self, subtotal):
++        return subtotal >= self.min_subtotal
++
++    def discount_for(self, subtotal):
++        """Số tiền được giảm trên tạm tính. Trả 0 nếu đơn không đủ điều kiện."""
++        if not self.is_applicable(subtotal):
++            return 0
++        if self.kind == PERCENT:
++            amount = int(round(subtotal * self.value / 100))
++            if self.max_discount is not None:
++                amount = min(amount, self.max_discount)

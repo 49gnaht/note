@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>Karpathy CLAUDE.md review</title>
+<style>
+:root{--bg:#0e1014;--panel:#171a21;--line:#262b36;--fg:#eef1f6;--mute:#8b93a5;--amber:#f5a524;--teal:#33c9a0;--red:#ff6161;--blue:#6aa8ff;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:var(--fg);font-family:Inter,"DejaVu Sans",sans-serif}
+.scene{position:absolute;inset:0;padding:90px 120px 200px;display:none}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-ligatures:none;font-feature-settings:"calt" 0,"liga" 0}
+.h{font-weight:800;letter-spacing:-.02em}
+.mute{color:var(--mute)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px}
+.tag{display:inline-block;padding:6px 16px;border-radius:999px;font-size:26px;font-weight:600;border:1px solid var(--line);color:var(--mute)}
+#sub{position:absolute;left:160px;right:160px;bottom:56px;text-align:center;font-size:42px;line-height:1.35;font-weight:600;color:#fff;text-shadow:0 2px 10px #000}
+#sub span{background:rgba(0,0,0,.55);padding:6px 18px;border-radius:10px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#prog{position:absolute;left:0;top:0;height:6px;background:var(--amber)}
+#chip{position:absolute;right:48px;top:36px;font-size:22px;color:var(--mute)}
+.term{font-size:34px;padding:36px 44px}
+.term .bar{display:flex;gap:12px;margin-bottom:28px}.term .bar i{width:18px;height:18px;border-radius:50%;background:#3a3f4b;display:block}
+.big{font-size:140px;font-weight:800;letter-spacing:-.03em}
+.row{display:flex;gap:40px}
+.col{flex:1}
+.card{padding:36px 40px}
+.diffl{font-size:22px;line-height:1.45;white-space:pre;color:#9fe7c6}
+.q{font-size:30px;line-height:1.35;padding:14px 20px;border-radius:12px;margin-bottom:12px;background:#1d212a}
+.q.hl{background:rgba(245,165,36,.18);outline:2px solid var(--amber)}
+.stamp{position:absolute;font-size:150px;font-weight:900;color:var(--amber);border:10px solid var(--amber);padding:0 50px;border-radius:24px;transform:rotate(-8deg)}
+.barwrap{height:64px;background:#1d212a;border-radius:12px;position:relative;margin:14px 0 34px}
+.barfill{position:absolute;top:0;bottom:0;left:0;border-radius:12px}
+.barrange{position:absolute;top:0;bottom:0;background:rgba(255,255,255,.25);border-radius:12px}
+.tree div{font-size:32px;line-height:1.6}
+.trap{color:var(--amber);font-size:24px!important;margin-left:18px;white-space:nowrap}
+</style></head><body>
+<div id="prog"></div><div id="chip">Review repo · andrej-karpathy-skills</div>
+
+<!-- 1 HOOK -->
+<section class="scene" id="s1">
+ <div class="panel term mono" id="s1term" style="width:1300px;margin:30px auto 0">
+  <div class="bar"><i></i><i></i><i></i></div>
+  <div><span style="color:var(--teal)">❯</span> <span id="s1type"></span><span id="s1cur">▌</span></div>
+  <div id="s1count" style="margin-top:30px;font-size:44px"></div>
+ </div>
+ <div class="panel card" id="s1inv" style="position:absolute;right:160px;top:400px;width:760px;font-size:34px;line-height:1.7">
+  <div class="h" style="font-size:30px;color:var(--mute)">HÓA ĐƠN DH-0603</div>
+  <div style="display:flex;justify-content:space-between"><span>Tạm tính</span><span>600.000đ</span></div>
+  <div style="display:flex;justify-content:space-between;color:var(--teal)"><span>Mã GIAM200K</span><span>−200.000đ</span></div>
+  <div id="s1ship" style="display:flex;justify-content:space-between;border-radius:8px;padding:0 8px;margin:0 -8px"><span>Phí ship</span><span>20.000đ</span></div>
+  <div id="s1note" style="font-size:24px;color:var(--amber);margin-top:8px">⚠ Claude có ghi chú điều này, sau khi code xong</div>
+ </div>
+ <div id="s1end" style="position:absolute;left:0;right:0;top:330px;text-align:center">
+  <div class="big">65 dòng</div><div style="font-size:48px;margin-top:10px" class="mute">vs <b style="color:var(--fg)">21</b> lượt Claude Code thật</div>
+ </div>
+</section>
+
+<!-- 2 REPO -->
+<section class="scene" id="s2">
+ <div class="panel card" id="s2repo" style="display:flex;align-items:center;justify-content:space-between">
+  <div><div class="mono" style="font-size:44px">multica-ai/<b>andrej-karpathy-skills</b></div>
+  <div style="font-size:30px;margin-top:12px" class="mute">Cốt lõi: <span class="mono" style="color:var(--fg)">CLAUDE.md</span> · 65 dòng · Claude Code tự đọc trong mỗi dự án</div></div>
+  <div style="text-align:right"><div style="font-size:72px;font-weight:800">★ <span id="s2stars">0</span></div><div class="mute" style="font-size:22px">GitHub, 21/11/2026</div></div>
+ </div>
+ <div class="mute" style="font-size:28px;margin:44px 0 18px">Andrej Karpathy (cựu giám đốc AI, Tesla) phàn nàn về AI viết code:</div>
+ <div id="s2q">
+  <div class="q"><b>Tự giả định</b>, không hỏi lại <span class="mute" style="font-size:22px"> · "make wrong assumptions… and just run along with them"</span></div>
+  <div class="q"><b>Làm phức tạp</b>: 100 dòng là đủ thì viết 1000 <span class="mute" style="font-size:22px"> · "1000 lines when 100 would do"</span></div>
+  <div class="q"><b>Tiện tay sửa</b> thứ nó không hiểu hết <span class="mute" style="font-size:22px"> · "change/remove… code they don't sufficiently understand"</span></div>
+ </div>
+</section>
+
+<!-- 3 PRINCIPLES -->
+<section class="scene" id="s3">
+ <div class="h" style="font-size:60px;margin-bottom:50px">4 nguyên tắc trong file</div>
+ <div class="row" id="s3cards" style="flex-wrap:wrap;gap:30px">
+  <div class="panel card" style="width:820px"><div class="mute" style="font-size:24px">01 · Think Before Coding</div><div class="h" style="font-size:44px;margin-top:8px">Nghĩ trước khi code</div><div style="font-size:30px;margin-top:8px" class="mute">Mơ hồ thì hỏi</div></div>
+  <div class="panel card" style="width:820px"><div class="mute" style="font-size:24px">02 · Simplicity First</div><div class="h" style="font-size:44px;margin-top:8px">Đơn giản trước tiên</div><div style="font-size:30px;margin-top:8px" class="mute">Chỉ viết thứ được yêu cầu</div></div>
+  <div class="panel card" style="width:820px"><div class="mute" style="font-size:24px">03 · Surgical Changes</div><div class="h" style="font-size:44px;margin-top:8px">Sửa kiểu phẫu thuật</div><div style="font-size:30px;margin-top:8px" class="mute">Không đụng thứ không liên quan</div></div>
+  <div class="panel card" style="width:820px"><div class="mute" style="font-size:24px">04 · Goal-Driven Execution</div><div class="h" style="font-size:44px;margin-top:8px">Làm theo mục tiêu</div><div style="font-size:30px;margin-top:8px" class="mute">Tiêu chí kiểm chứng → lặp đến khi đạt</div></div>
+ </div>
+</section>
+
+<!-- 4 EXPERIMENT -->
+<section class="scene" id="s4">
+ <div class="row">
+  <div class="panel card tree mono" style="width:860px" id="s4tree">
+   <div>shop/</div>
+   <div>├─ pricing.py</div>
+   <div class="trap" data-k="1" style="margin-left:60px">⚑ old_calc_total_v1(): app mobile 2.x còn gọi</div>
+   <div class="trap" data-k="2" style="margin-left:60px">⚑ VAT: "hỏi kế toán trước khi đổi"</div>
+   <div>├─ shipping.py</div>
+   <div class="trap" data-k="3" style="margin-left:60px">⚑ bug: &gt; 500000 (ghi chú nói "từ 500k")</div>
+   <div>├─ invoice.py</div>
+   <div>└─ tests/ <span class="mute" style="font-size:26px">5 test</span></div>
+  </div>
+  <div class="col" id="s4vars">
+   <div class="h" style="font-size:40px;margin-bottom:24px">3 cách × 3 lần</div>
+   <div class="panel card" style="margin-bottom:18px;font-size:34px">① Không dặn gì <span style="float:right;letter-spacing:6px">●●●</span></div>
+   <div class="panel card" style="margin-bottom:18px;font-size:34px">② +1 câu: <i>"chưa rõ thì hỏi trước"</i> <span style="float:right;letter-spacing:6px">●●●</span></div>
+   <div class="panel card" style="font-size:34px;border-color:var(--amber)">③ File của Karpathy <span style="float:right;letter-spacing:6px">●●●</span></div>
+  </div>
+ </div>
+ <div style="margin-top:40px;font-size:28px" class="mute" id="s4cap">21 lượt · 1 model · 1 codebase nhỏ · chạy tự động: "hỏi" = dừng lại chờ · minh họa, không phải benchmark</div>
+</section>
+
+<!-- 5 BUG -->
+<section class="scene" id="s5">
+ <div class="panel card mono" style="font-size:40px;line-height:1.6" id="s5diff">
+  <div class="mute" style="font-size:26px">shop/shipping.py</div>
+  <div style="color:var(--red);white-space:pre">-    if subtotal &gt; 500000:</div>
+  <div style="color:var(--teal);white-space:pre">+    if subtotal &gt;= 500000:</div>
+ </div>
+ <div class="row" style="margin-top:40px" id="s5cols">
+  <div class="panel card col" style="font-size:34px"><div class="mute" style="font-size:26px">Không dặn gì (3 lần)</div>1 ký tự · thêm 2 test</div>
+  <div class="panel card col" style="font-size:34px"><div class="mute" style="font-size:26px">File Karpathy (3 lần)</div>1 ký tự · thêm 1–2 test</div>
+ </div>
+ <div id="s5checks" style="margin-top:36px;font-size:32px;line-height:1.7">
+  <div>✓ Không ai xóa hàm cũ của app mobile</div><div>✓ Không ai tự ý đổi thuế</div><div>✓ Không ai sửa code không liên quan</div>
+ </div>
+ <div class="stamp" id="s5stamp" style="right:200px;top:600px">HÒA</div>
+</section>
+
+<!-- 6 FEATURE ROUND 1 -->
+<section class="scene" id="s6">
+ <div class="mono" style="font-size:32px;margin-bottom:28px"><span style="color:var(--teal)">❯</span> Thêm tính năng mã giảm giá cho đơn hàng.</div>
+ <div class="row" style="gap:30px">
+  <div class="panel card" style="width:600px;height:640px;overflow:hidden;position:relative" id="s6c1">
+   <div class="mute" style="font-size:26px">① Không dặn gì</div>
+   <div class="h" style="font-size:40px;margin:6px 0 14px">124–155 dòng <span class="mute" style="font-size:24px">(gồm test)</span></div>
+   <div style="position:absolute;left:40px;right:20px;top:150px;bottom:20px;overflow:hidden"><div id="s6diff" class="diffl mono"></div></div>
+  </div>
+  <div class="panel card col" id="s6c2"><div class="mute" style="font-size:26px">② +1 câu "hỏi trước"</div><div class="h" style="font-size:40px;margin:6px 0 20px">0 dòng · 6–8 câu hỏi</div>
+   <div class="q">Giảm theo % hay số tiền?</div><div class="q">Thuế tính trước hay sau giảm?</div><div class="q hl">Ngưỡng miễn ship xét trước hay sau giảm?</div><div class="q" style="color:var(--teal)">→ Phương án đề xuất: trả lời "ok"</div></div>
+  <div class="panel card col" id="s6c3" style="border-color:var(--amber)"><div class="mute" style="font-size:26px">③ File Karpathy</div><div class="h" style="font-size:40px;margin:6px 0 20px">0 dòng · 5–6 câu hỏi</div>
+   <div class="q">Giảm theo % hay số tiền?</div><div class="q">Thuế tính trước hay sau giảm?</div><div class="q hl">Ngưỡng miễn ship xét trước hay sau giảm?</div><div class="q" style="color:var(--teal)">→ Phương án đề xuất: trả lời "ok"</div></div>
+ </div>
+</section>
+
+<!-- 7 OK ROUND -->
+<section class="scene" id="s7">
+ <div class="mono" style="font-size:32px;margin-bottom:30px"><span style="color:var(--teal)">❯</span> ok, làm theo phương án đề xuất của bạn.</div>
+ <div class="h" style="font-size:36px">Dòng code khi xong tính năng <span class="mute" style="font-size:26px">(chưa tính test · 3 lần mỗi cách)</span></div>
+ <div id="s7bars" style="margin-top:26px">
+  <div style="font-size:30px">① Không dặn gì <b style="float:right" data-v="48–64"></b></div><div class="barwrap"><div class="barfill" style="background:#5b6475" data-a="48" data-b="64"></div></div>
+  <div style="font-size:30px">② +1 câu "hỏi trước" <b style="float:right" data-v="59–90"></b></div><div class="barwrap"><div class="barfill" style="background:var(--red)" data-a="59" data-b="90"></div></div>
+  <div style="font-size:30px">③ File Karpathy <b style="float:right" data-v="23–26"></b></div><div class="barwrap"><div class="barfill" style="background:var(--teal)" data-a="23" data-b="26"></div></div>
+ </div>
+ <div class="row" id="s7def" style="gap:30px">
+  <div class="panel card col" style="font-size:28px;line-height:1.5"><div class="mute" style="font-size:24px">Đề xuất của ② (3/3)</div>% + số tiền · <b>đơn tối thiểu · hạn dùng · giảm tối đa</b></div>
+  <div class="panel card col" style="font-size:28px;line-height:1.5"><div class="mute" style="font-size:24px">Đề xuất của ③ (3/3)</div>"Cách đơn giản nhất": 1 bảng mã · % hoặc số tiền</div>
+  <div class="panel card col" style="font-size:28px;line-height:1.5" id="s7cost"><div class="mute" style="font-size:24px">Tổng chi phí so với ①</div>② <b style="color:var(--amber)">+67%</b> · ③ <b style="color:var(--amber)">+73%</b></div>
+ </div>
+</section>
+
+<!-- 8 LESSON -->
+<section class="scene" id="s8">
+ <div class="row" style="gap:40px;margin-top:110px">
+  <div class="panel card col" id="s8a" style="padding:50px"><div class="mute" style="font-size:28px">Hỏi trước</div><div class="h" style="font-size:64px;margin-top:10px">1 câu là đủ</div></div>
+  <div class="panel card col" id="s8b" style="border-color:var(--amber);padding:50px"><div class="mute" style="font-size:28px">Viết ít</div><div class="h" style="font-size:64px;margin-top:10px">1 câu chưa đủ</div><div class="mute" style="font-size:26px;margin-top:10px">trong thí nghiệm này, chỉ bản có file giữ code gọn</div></div>
+ </div>
+ <div class="panel card" id="s8c" style="margin-top:60px;font-size:40px;line-height:1.5;padding:44px 50px;border-color:var(--amber)">
+  ⚠ Đề xuất của ② cũng bỏ miễn ship cho đơn 600k dùng mã 200k.<br><span class="h" style="color:var(--amber)">Trả lời "ok" mà không đọc = để AI quyết định.</span>
+ </div>
+</section>
+
+<!-- 9 APPLY -->
+<section class="scene" id="s9">
+ <div class="panel card mono" id="s9cmd" style="font-size:24px;line-height:1.6">
+  <div class="mute"># Nối vào CLAUDE.md có sẵn của dự án</div>
+  <div>curl -s https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/CLAUDE.md <span style="color:var(--amber)">&gt;&gt;</span> CLAUDE.md</div>
+ </div>
+ <div class="row" style="margin-top:36px;gap:30px">
+  <div class="panel card col" id="s9a" style="font-size:30px;line-height:1.6"><div class="h" style="font-size:34px;color:var(--teal)">Nên dùng</div>Tiền · dữ liệu khách hàng · chính sách</div>
+  <div class="panel card col" id="s9b" style="font-size:30px;line-height:1.6"><div class="h" style="font-size:34px;color:var(--red)">Cân nhắc</div>Việc vặt · bản làm thử<br><span class="mute" style="font-size:24px">"ưu tiên cẩn thận hơn tốc độ" (tác giả)</span></div>
+ </div>
+ <div class="panel card mono" id="s9rule" style="margin-top:30px;font-size:28px"><span class="mute">## Luật riêng</span><br>- Mọi thay đổi liên quan đến tiền: hỏi trước khi code.</div>
+ <div id="s9chk" style="margin-top:26px;font-size:30px">Đo hiệu quả: <b>✓ diff nhỏ hơn</b> &nbsp; <b>✓ câu hỏi đến trước code</b></div>
+</section>
+
+<!-- 10 END -->
+<section class="scene" id="s10">
+ <div style="text-align:center;margin-top:170px">
+  <div class="mono mute" style="font-size:40px" id="s10f">CLAUDE.md · 65 dòng</div>
+  <div class="h" style="font-size:76px;margin-top:40px;line-height:1.25" id="s10t">Không làm AI thông minh hơn.<br><span style="color:var(--amber)">Làm AI biết dừng lại, và viết ít đi.</span></div>
+  <div class="mute" style="font-size:24px;margin-top:60px" id="s10c">21 lượt · 1 model · 1 codebase · minh họa, không phải benchmark</div>
+ </div>
+</section>
+
+<div id="sub"><span></span></div>
+<script src="data.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-cl(x),3);
+// appear: fade + rise; lt=local time, at=start time (s)
+function ap(el,lt,at,dur=.6,dy=30){const p=ease((lt-at)/dur);el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px)`;}
+function apKids(el,lt,at,step){[...el.children].forEach((c,i)=>ap(c,lt,at+i*step));}
+const D=window.DIFF||[];
+$('s6diff').textContent=D.join('\n');
+const R={
+ 1(lt,d){const txt='Thêm tính năng mã giảm giá cho đơn hàng.';const n=Math.floor(cl((lt-.4)/2.2)*txt.length);$('s1type').textContent=txt.slice(0,n);
+   $('s1cur').style.opacity=(Math.floor(lt*2)%2)?1:0;
+   const c=Math.round(ease((lt-3)/5)*155);$('s1count').innerHTML=lt>3?`<span style="color:var(--teal)">✎</span> ${c} dòng <span class="mute" style="font-size:28px">(gồm test)</span>`:'';
+   const t1=d*.62; // switch to end card
+   $('s1term').style.opacity=lt<t1?1:cl(1-(lt-t1)/.5);
+   const inv=$('s1inv');ap(inv,lt,8.5);if(lt>t1)inv.style.opacity=cl(1-(lt-t1)/.5);
+   const hl=cl((lt-10.5)/.4);$('s1ship').style.background=`rgba(245,165,36,${.28*hl})`;$('s1ship').style.color=hl>.5?'var(--amber)':'';
+   ap($('s1note'),lt,13);if(lt>t1)$('s1note').style.opacity=0;
+   ap($('s1end'),lt,t1+.5);},
+ 2(lt,d){ap($('s2repo'),lt,.2);$('s2stars').textContent=(Math.round(ease((lt-.5)/2.5)*2349)/10).toFixed(1).replace('.',',')+'k';apKids($('s2q'),lt,d*.38,d*.12);},
+ 3(lt,d){apKids($('s3cards'),lt,d*.12,d*.2);},
+ 4(lt,d){ap($('s4tree'),lt,.2);document.querySelectorAll('#s4tree .trap').forEach((e,i)=>{const p=cl((lt-(d*.22+i*d*.1))/.5);e.style.opacity=p;});
+   [...$('s4vars').children].forEach((c,i)=>ap(c,lt,d*.55+i*d*.07));ap($('s4cap'),lt,d*.72);},
+ 5(lt,d){ap($('s5diff'),lt,.2);ap($('s5cols'),lt,d*.25);const sp=cl((lt-d*.32)/.35);const st=$('s5stamp');st.style.opacity=sp;st.style.transform=`rotate(-8deg) scale(${2-sp})`;
+   apKids($('s5checks'),lt,d*.55,d*.08);},
+ 6(lt,d){ap($('s6c1'),lt,.2);$('s6diff').style.transform=`translateY(${-(Math.max(0,lt-1.5)*45)%500}px)`;ap($('s6c2'),lt,d*.3);ap($('s6c3'),lt,d*.36);
+   document.querySelectorAll('#s6 .q.hl').forEach(e=>{e.style.outlineColor=lt>d*.55?'var(--amber)':'transparent';e.style.background=lt>d*.55?'rgba(245,165,36,.18)':'#1d212a';});},
+ 7(lt,d,sc){const S=k=>sc.subs[Math.min(k,sc.subs.length-1)].t0-sc.start;
+   const bars=document.querySelectorAll('#s7bars .barfill');const labs=document.querySelectorAll('#s7bars b');
+   const at=[S(0)+1.5,S(3),S(7)];
+   bars.forEach((b,i)=>{const p=ease((lt-at[i])/1.2);b.style.width=(p*(+b.dataset.b)/100*100)+'%';labs[i].textContent=p>.95?labs[i].dataset.v+' dòng':'';});
+   [...$('s7def').children].forEach((c,i)=>ap(c,lt,[S(1),S(5),S(9)][i]));},
+ 8(lt,d){ap($('s8a'),lt,.2);ap($('s8b'),lt,d*.2);ap($('s8c'),lt,d*.48);},
+ 9(lt,d){ap($('s9cmd'),lt,.2);ap($('s9a'),lt,d*.22);ap($('s9b'),lt,d*.36);ap($('s9rule'),lt,d*.6);ap($('s9chk'),lt,d*.8);},
+ 10(lt,d){ap($('s10f'),lt,.2);ap($('s10t'),lt,1);ap($('s10c'),lt,d*.5);}
+};
+let lastSub='';
+window.seek=function(t){
+ const T=window.TL;$('prog').style.width=(t/T.duration*100)+'%';
+ for(const sc of T.scenes){const el=$('s'+sc.id);const on=t>=sc.start&&t<sc.end;el.style.display=on?'block':'none';
+   if(on){const lt=t-sc.start,d=sc.end-sc.start;R[sc.id](lt,d,sc);
+     // scene crossfade
+     el.style.opacity=cl(lt/.35)*cl((sc.end-t)/.35);}}
+ let s='';for(const sc of T.scenes)for(const x of sc.subs)if(t>=x.t0&&t<x.t1+.15)s=x.text;
+ if(s!==lastSub){document.querySelector('#sub span').textContent=s;document.querySelector('#sub span').style.display=s?'inline':'none';lastSub=s;}
+};
+window.seek(0);
+</script></body></html>

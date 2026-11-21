@@ -1,0 +1,29 @@
+diff --git a/shop/shipping.py b/shop/shipping.py
+index 410b9b1..8c918b8 100644
+--- a/shop/shipping.py
++++ b/shop/shipping.py
+@@ -8,6 +8,6 @@ FEES = {
+ 
+ 
+ def shipping_fee(province, subtotal):
+-    if subtotal > 500000:
++    if subtotal >= 500000:
+         return 0
+     return FEES.get(province, FEES["OTHER"])
+diff --git a/tests/test_pricing.py b/tests/test_pricing.py
+index 5738dd4..867a6fb 100644
+--- a/tests/test_pricing.py
++++ b/tests/test_pricing.py
+@@ -20,3 +20,12 @@ def test_total_with_ship():
+ 
+ def test_total_free_ship():
+     assert calc_total(make_order(price=300000, qty=2)) == 600000 + 48000
++
++
++def test_total_free_ship_at_threshold():
++    # Đơn đúng 500.000đ cũng được miễn phí ship
++    assert calc_total(make_order(price=250000, qty=2)) == 500000 + 40000
++
++
++def test_total_with_ship_just_below_threshold():
++    assert calc_total(make_order(price=499999, qty=1)) == 499999 + 40000 + 20000

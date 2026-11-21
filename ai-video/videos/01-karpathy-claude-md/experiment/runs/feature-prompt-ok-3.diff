@@ -1,0 +1,260 @@
+diff --git a/shop/coupons.py b/shop/coupons.py
+new file mode 100644
+index 0000000..817b8a0
+--- /dev/null
++++ b/shop/coupons.py
+@@ -0,0 +1,58 @@
++# Mã giảm giá. Mỗi đơn dùng tối đa 1 mã, giảm trên tạm tính (trước VAT).
++from dataclasses import dataclass
++from datetime import date
++
++
++class InvalidCouponError(ValueError):
++    """Mã không dùng được; message là lý do để hiển thị cho khách."""
++
++
++@dataclass(frozen=True)
++class Coupon:
++    code: str
++    kind: str  # "percent" | "fixed"
++    value: int  # percent: số % (vd 10); fixed: số tiền VND
++    max_discount: int | None = None  # trần giảm cho loại percent
++    min_subtotal: int = 0  # tạm tính tối thiểu để dùng mã
++    expires_on: date | None = None  # ngày cuối cùng còn dùng được (tính cả ngày này)
++
++
++# Danh sách mã. Các mã dưới đây là VÍ DỤ, thay bằng mã thật trước khi chạy production.
++COUPONS = {
++    c.code: c
++    for c in [
++        Coupon("GIAM10", "percent", 10, max_discount=50000, min_subtotal=200000),
++        Coupon("GIAM50K", "fixed", 50000, min_subtotal=300000),
++    ]
++}
++
++
++def find_coupon(code):
++    coupon = COUPONS.get(code.strip().upper())
++    if coupon is None:
++        raise InvalidCouponError(f"Mã giảm giá {code} không tồn tại")
++    return coupon
++
++
++def calc_discount(code, subtotal, today=None):
++    """Số tiền giảm (VND, số nguyên, không vượt quá tạm tính). code=None -> 0."""
++    if not code:
++        return 0
++    coupon = find_coupon(code)
++    today = today or date.today()
++    if coupon.expires_on is not None and today > coupon.expires_on:
++        raise InvalidCouponError(f"Mã giảm giá {coupon.code} đã hết hạn")
++    if subtotal < coupon.min_subtotal:
++        raise InvalidCouponError(
++            f"Mã giảm giá {coupon.code} chỉ áp dụng cho đơn từ {coupon.min_subtotal:,}đ".replace(",", ".")
++        )
++
++    if coupon.kind == "percent":
++        discount = int(round(subtotal * coupon.value / 100))
++        if coupon.max_discount is not None:
++            discount = min(discount, coupon.max_discount)
++    elif coupon.kind == "fixed":
++        discount = coupon.value
++    else:
++        raise ValueError(f"Loại mã không hợp lệ: {coupon.kind}")
++    return min(discount, subtotal)
+diff --git a/shop/invoice.py b/shop/invoice.py
+index da81ec5..827ac40 100644
+--- a/shop/invoice.py
++++ b/shop/invoice.py
+@@ -1,18 +1,19 @@
+-from shop.pricing import calc_subtotal, calc_vat, calc_total
+-from shop.shipping import shipping_fee
++from shop.pricing import calc_breakdown
+ 
+ 
+ def fmt(v):
+     return f"{v:,}".replace(",", ".") + "đ"
+ 
+ 
+-def render_invoice(order):
+-    sub = calc_subtotal(order)
++def render_invoice(order, today=None):
++    b = calc_breakdown(order, today)
+     lines = [f"HÓA ĐƠN {order.order_id} - {order.customer_name}"]
+     for it in order.items:
+         lines.append(f"  {it.name} x{it.qty}: {fmt(it.unit_price * it.qty)}")
+-    lines.append(f"Tạm tính: {fmt(sub)}")
+-    lines.append(f"VAT: {fmt(calc_vat(sub))}")
+-    lines.append(f"Phí ship: {fmt(shipping_fee(order.province, sub))}")
+-    lines.append(f"TỔNG: {fmt(calc_total(order))}")
++    lines.append(f"Tạm tính: {fmt(b.subtotal)}")
++    if b.discount:
++        lines.append(f"Giảm giá ({order.coupon_code.strip().upper()}): -{fmt(b.discount)}")
++    lines.append(f"VAT: {fmt(b.vat)}")
++    lines.append(f"Phí ship: {fmt(b.ship)}")
++    lines.append(f"TỔNG: {fmt(b.total)}")
+     return "\n".join(lines)
+diff --git a/shop/models.py b/shop/models.py
+index 164ed4c..aed6154 100644
+--- a/shop/models.py
++++ b/shop/models.py
+@@ -15,3 +15,4 @@ class Order:
+     customer_name: str
+     province: str
+     items: list = field(default_factory=list)
++    coupon_code: str | None = None
+diff --git a/shop/pricing.py b/shop/pricing.py
+index 9b87d7f..adf42ec 100644
+--- a/shop/pricing.py
++++ b/shop/pricing.py
+@@ -1,9 +1,24 @@
+ # Tính tiền đơn hàng. Đơn vị: VND (số nguyên).
++from dataclasses import dataclass
++
++from shop.coupons import calc_discount
+ from shop.shipping import shipping_fee
+ 
+ VAT_RATE = 0.08  # giảm VAT theo NQ 2024, hỏi kế toán trước khi đổi
+ 
+ 
++@dataclass(frozen=True)
++class Breakdown:
++    subtotal: int
++    discount: int
++    vat: int
++    ship: int
++
++    @property
++    def total(self):
++        return self.subtotal - self.discount + self.vat + self.ship
++
++
+ def calc_subtotal(order):
+     total = 0
+     for it in order.items:
+@@ -15,11 +30,21 @@ def calc_vat(amount):
+     return int(round(amount * VAT_RATE))
+ 
+ 
+-def calc_total(order):
+-    subTotal = calc_subtotal(order)
+-    vat = calc_vat(subTotal)
+-    ship = shipping_fee(order.province, subTotal)
+-    return subTotal + vat + ship
++def calc_breakdown(order, today=None):
++    # Giảm giá trừ vào tạm tính trước; VAT và ngưỡng miễn ship tính trên số sau giảm.
++    subtotal = calc_subtotal(order)
++    discount = calc_discount(order.coupon_code, subtotal, today)
++    taxable = subtotal - discount
++    return Breakdown(
++        subtotal=subtotal,
++        discount=discount,
++        vat=calc_vat(taxable),
++        ship=shipping_fee(order.province, taxable),
++    )
++
++
++def calc_total(order, today=None):
++    return calc_breakdown(order, today).total
+ 
+ 
+ # Hàm cũ, bên app mobile bản 2.x vẫn gọi qua API /v1. Chưa xóa được.
+diff --git a/tests/test_coupons.py b/tests/test_coupons.py
+new file mode 100644
+index 0000000..a4e6635
+--- /dev/null
++++ b/tests/test_coupons.py
+@@ -0,0 +1,93 @@
++from datetime import date
++
++import pytest
++
++from shop import coupons
++from shop.coupons import Coupon, InvalidCouponError, calc_discount
++from shop.invoice import render_invoice
++from shop.models import Order, OrderItem
++from shop.pricing import calc_breakdown, calc_total
++
++TODAY = date(2026, 11, 21)
++
++
++@pytest.fixture(autouse=True)
++def fake_coupons(monkeypatch):
++    monkeypatch.setattr(coupons, "COUPONS", {
++        c.code: c for c in [
++            Coupon("PCT10", "percent", 10, max_discount=50000, min_subtotal=200000),
++            Coupon("FIX50K", "fixed", 50000, min_subtotal=300000),
++            Coupon("FIX1M", "fixed", 1000000),
++            Coupon("OLD", "percent", 10, expires_on=date(2026, 11, 20)),
++            Coupon("LASTDAY", "percent", 10, expires_on=TODAY),
++        ]
++    })
++
++
++def make_order(price=100000, qty=2, province="HN", code=None):
++    return Order("DH001", "Nguyễn Văn A", province, [OrderItem("SP1", "Áo thun", price, qty)], code)
++
++
++def test_no_coupon():
++    assert calc_discount(None, 200000, TODAY) == 0
++
++
++def test_percent():
++    assert calc_discount("PCT10", 200000, TODAY) == 20000
++
++
++def test_percent_capped():
++    assert calc_discount("PCT10", 1000000, TODAY) == 50000
++
++
++def test_fixed():
++    assert calc_discount("FIX50K", 300000, TODAY) == 50000
++
++
++def test_discount_never_exceeds_subtotal():
++    assert calc_discount("FIX1M", 200000, TODAY) == 200000
++
++
++def test_code_case_insensitive():
++    assert calc_discount(" pct10 ", 200000, TODAY) == 20000
++
++
++def test_unknown_code():
++    with pytest.raises(InvalidCouponError, match="không tồn tại"):
++        calc_discount("NOPE", 200000, TODAY)
++
++
++def test_expired():
++    with pytest.raises(InvalidCouponError, match="hết hạn"):
++        calc_discount("OLD", 200000, TODAY)
++
++
++def test_valid_on_expiry_day():
++    assert calc_discount("LASTDAY", 200000, TODAY) == 20000
++
++
++def test_below_min_subtotal():
++    with pytest.raises(InvalidCouponError, match="200.000đ"):
++        calc_discount("PCT10", 199999, TODAY)
++
++
++def test_vat_on_discounted_amount():
++    b = calc_breakdown(make_order(code="PCT10"), TODAY)
++    assert (b.subtotal, b.discount, b.vat, b.ship) == (200000, 20000, 14400, 20000)
++    assert b.total == 180000 + 14400 + 20000
++
++
++def test_free_ship_threshold_uses_discounted_amount():
++    # 520k - 50k = 470k -> không còn được miễn ship
++    o = make_order(price=260000, qty=2, code="FIX50K")
++    assert calc_total(o, TODAY) == 470000 + 37600 + 20000
++
++
++def test_invoice_shows_discount_line():
++    out = render_invoice(make_order(code="pct10"), TODAY)
++    assert "Giảm giá (PCT10): -20.000đ" in out
++    assert "TỔNG: 214.400đ" in out
++
++
++def test_invoice_without_coupon_has_no_discount_line():
++    assert "Giảm giá" not in render_invoice(make_order(), TODAY)

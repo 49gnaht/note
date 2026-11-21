@@ -1,0 +1,400 @@
+{
+ "duration": 242.27,
+ "scenes": [
+  {
+   "id": 1,
+   "name": "Hook",
+   "start": 0.0,
+   "end": 29.86,
+   "subs": [
+    {
+     "t0": 0.6,
+     "t1": 3.8,
+     "text": "Tôi giao cho Claude Code đúng một câu: thêm tính năng mã giảm giá."
+    },
+    {
+     "t0": 4.15,
+     "t1": 7.75,
+     "text": "Hơn một phút sau, nó viết xong gần một trăm rưỡi dòng, cả code lẫn test,"
+    },
+    {
+     "t0": 8.1,
+     "t1": 13.62,
+     "text": "kèm theo một quyết định kinh doanh: khách mua sáu trăm nghìn, dùng mã giảm hai trăm nghìn, sẽ mất miễn phí giao hàng."
+    },
+    {
+     "t0": 13.97,
+     "t1": 16.85,
+     "text": "Nó có báo lại. Nhưng là sau khi code đã viết xong."
+    },
+    {
+     "t0": 17.2,
+     "t1": 21.68,
+     "text": "Một repo hơn hai trăm ba mươi nghìn sao hứa sửa chuyện này bằng một file sáu mươi lăm dòng."
+    },
+    {
+     "t0": 22.03,
+     "t1": 24.67,
+     "text": "Tôi chạy hai mươi mốt lượt Claude Code thật để kiểm tra."
+    },
+    {
+     "t0": 25.02,
+     "t1": 26.62,
+     "text": "Và file đó có tác dụng thật."
+    },
+    {
+     "t0": 26.97,
+     "t1": 28.81,
+     "text": "Nhưng không phải vì lý do mà tôi nghĩ."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Repo là gì",
+   "start": 29.86,
+   "end": 51.35,
+   "subs": [
+    {
+     "t0": 30.26,
+     "t1": 34.74,
+     "text": "Repo này tên là andrej-karpathy-skills. Cốt lõi là một file CLAUDE.md,"
+    },
+    {
+     "t0": 35.09,
+     "t1": 37.57,
+     "text": "file hướng dẫn mà Claude Code tự đọc trong mỗi dự án."
+    },
+    {
+     "t0": 37.92,
+     "t1": 42.08,
+     "text": "Nó dựa trên lời phàn nàn của Andrej Karpathy, cựu giám đốc AI của Tesla:"
+    },
+    {
+     "t0": 42.43,
+     "t1": 45.87,
+     "text": "AI viết code hay tự giả định mà không hỏi, thích làm phức tạp,"
+    },
+    {
+     "t0": 46.22,
+     "t1": 50.3,
+     "text": "một trăm dòng là đủ thì viết một nghìn, và tiện tay sửa cả những gì nó không hiểu hết."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Bốn nguyên tắc",
+   "start": 51.35,
+   "end": 66.68,
+   "subs": [
+    {
+     "t0": 51.75,
+     "t1": 53.43,
+     "text": "File trả lời bằng bốn nguyên tắc."
+    },
+    {
+     "t0": 53.78,
+     "t1": 55.7,
+     "text": "Nghĩ trước khi code: mơ hồ thì hỏi."
+    },
+    {
+     "t0": 56.05,
+     "t1": 58.29,
+     "text": "Đơn giản trước tiên: chỉ viết thứ được yêu cầu."
+    },
+    {
+     "t0": 58.64,
+     "t1": 61.12,
+     "text": "Sửa kiểu phẫu thuật: không đụng thứ không liên quan."
+    },
+    {
+     "t0": 61.47,
+     "t1": 65.63,
+     "text": "Và làm theo mục tiêu: đặt tiêu chí kiểm chứng, như bài test, rồi lặp đến khi đạt."
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "name": "Thí nghiệm",
+   "start": 66.68,
+   "end": 94.79,
+   "subs": [
+    {
+     "t0": 67.08,
+     "t1": 70.68,
+     "text": "Tôi dựng một mô-đun tính tiền cho cửa hàng trực tuyến: thuế tám phần trăm,"
+    },
+    {
+     "t0": 71.03,
+     "t1": 74.31,
+     "text": "phí giao hàng theo tỉnh, miễn phí giao hàng cho đơn từ năm trăm nghìn."
+    },
+    {
+     "t0": 74.66,
+     "t1": 76.26,
+     "text": "Trong đó có sẵn vài cái bẫy."
+    },
+    {
+     "t0": 76.61,
+     "t1": 79.73,
+     "text": "Một hàm cũ trông như code chết, nhưng app mobile vẫn đang gọi."
+    },
+    {
+     "t0": 80.08,
+     "t1": 84.0,
+     "text": "Một dòng ghi chú dặn hỏi kế toán trước khi đổi thuế. Và một lỗi thật."
+    },
+    {
+     "t0": 84.35,
+     "t1": 88.99,
+     "text": "Tôi so ba cách: không dặn gì, thêm đúng một câu \"chưa rõ thì hỏi trước\", và dùng file của Karpathy."
+    },
+    {
+     "t0": 89.34,
+     "t1": 93.74,
+     "text": "Mỗi cách chạy ba lần. Ở chế độ chạy tự động, \"hỏi\" nghĩa là Claude dừng lại chờ tôi."
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "name": "Sửa bug: hòa",
+   "start": 94.79,
+   "end": 111.53,
+   "subs": [
+    {
+     "t0": 95.19,
+     "t1": 99.75,
+     "text": "Việc đầu tiên: sửa lỗi phí giao hàng, chạy không dặn gì và có file. Kết quả là hòa."
+    },
+    {
+     "t0": 100.1,
+     "t1": 103.22,
+     "text": "Lần nào Claude cũng chỉ sửa đúng một ký tự, thêm một hai bài test."
+    },
+    {
+     "t0": 103.57,
+     "t1": 107.17,
+     "text": "Và không lượt nào sập bẫy: không ai xóa hàm cũ, không ai tự ý đổi thuế."
+    },
+    {
+     "t0": 107.52,
+     "t1": 110.48,
+     "text": "Model bây giờ đã khá kỷ luật. File này không phải phép màu."
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "name": "Tính năng mơ hồ, lượt 1",
+   "start": 111.53,
+   "end": 140.07,
+   "subs": [
+    {
+     "t0": 111.93,
+     "t1": 114.09,
+     "text": "Việc thứ hai mới thú vị: thêm mã giảm giá."
+    },
+    {
+     "t0": 114.44,
+     "t1": 118.68,
+     "text": "Không dặn gì, Claude viết code ngay, rồi mới liệt kê giả định cho bạn kiểm tra."
+    },
+    {
+     "t0": 119.03,
+     "t1": 122.07,
+     "text": "Còn hai cách kia, cả sáu lần, Claude đều dừng lại."
+    },
+    {
+     "t0": 122.42,
+     "t1": 126.58,
+     "text": "Không dòng code nào, chỉ có năm đến tám câu hỏi: giảm theo phần trăm hay số tiền,"
+    },
+    {
+     "t0": 126.93,
+     "t1": 130.45,
+     "text": "thuế tính trước hay sau giảm, ngưỡng miễn phí giao hàng xét trên tiền nào."
+    },
+    {
+     "t0": 130.8,
+     "t1": 133.36,
+     "text": "Kèm một phương án đề xuất, bạn chỉ cần trả lời \"ok\"."
+    },
+    {
+     "t0": 133.71,
+     "t1": 136.35,
+     "text": "Vậy là chỉ một câu dặn đã đủ để AI biết hỏi trước."
+    },
+    {
+     "t0": 136.7,
+     "t1": 139.02,
+     "text": "Đến đây tôi tưởng file sáu mươi lăm dòng là thừa."
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "name": "Lượt \"ok\": khác biệt thật",
+   "start": 140.07,
+   "end": 181.21,
+   "subs": [
+    {
+     "t0": 140.47,
+     "t1": 144.39,
+     "text": "Rồi tôi trả lời \"ok\" cho cả hai, không sửa gì. Đây mới là chỗ khác biệt."
+    },
+    {
+     "t0": 144.74,
+     "t1": 150.5,
+     "text": "Với một câu dặn, phương án đề xuất của Claude rất hào phóng: đơn tối thiểu, hạn sử dụng, mức giảm tối đa."
+    },
+    {
+     "t0": 150.85,
+     "t1": 152.93,
+     "text": "Toàn thứ nghe hợp lý, nhưng không ai yêu cầu."
+    },
+    {
+     "t0": 153.28,
+     "t1": 156.56,
+     "text": "Kết quả là từ sáu mươi đến chín mươi dòng code, chưa tính test,"
+    },
+    {
+     "t0": 156.91,
+     "t1": 158.91,
+     "text": "trung bình còn nhiều hơn cả khi không dặn gì."
+    },
+    {
+     "t0": 159.26,
+     "t1": 163.34,
+     "text": "Với file của Karpathy, phương án đề xuất là cách đơn giản nhất: một bảng mã,"
+    },
+    {
+     "t0": 163.69,
+     "t1": 165.37,
+     "text": "giảm theo phần trăm hoặc số tiền."
+    },
+    {
+     "t0": 165.72,
+     "t1": 167.96,
+     "text": "Chỉ khoảng hai mươi lăm dòng, bằng một phần ba."
+    },
+    {
+     "t0": 168.31,
+     "t1": 171.67,
+     "text": "Ít test hơn, chủ yếu vì ít tính năng hơn, tôi chưa đo độ phủ."
+    },
+    {
+     "t0": 172.02,
+     "t1": 173.94,
+     "text": "Nhưng cái giá là: tính cả lượt hỏi,"
+    },
+    {
+     "t0": 174.29,
+     "t1": 177.89,
+     "text": "cả hai cách đều đắt hơn khoảng bảy mươi phần trăm so với không dặn gì."
+    },
+    {
+     "t0": 178.24,
+     "t1": 180.16,
+     "text": "Viết ít không có nghĩa là rẻ hơn."
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "name": "Bài học",
+   "start": 181.21,
+   "end": 204.89,
+   "subs": [
+    {
+     "t0": 181.61,
+     "t1": 185.05,
+     "text": "Vậy bài học là: dạy AI hỏi trước thì dễ, một câu là đủ."
+    },
+    {
+     "t0": 185.4,
+     "t1": 188.28,
+     "text": "Còn để AI viết ít, một câu dặn hỏi là chưa đủ."
+    },
+    {
+     "t0": 188.63,
+     "t1": 191.35,
+     "text": "Trong thí nghiệm này, chỉ bản có file giữ được code gọn."
+    },
+    {
+     "t0": 191.7,
+     "t1": 196.58,
+     "text": "Còn một cái bẫy nữa: bản một câu dặn đề xuất đúng chính sách bỏ miễn phí giao hàng cho khách sáu trăm nghìn."
+    },
+    {
+     "t0": 196.93,
+     "t1": 198.61,
+     "text": "Phương án đề xuất cũng là một quyết định."
+    },
+    {
+     "t0": 198.96,
+     "t1": 203.84,
+     "text": "Nếu bạn trả lời \"ok\" mà không đọc, thì vẫn là AI quyết định thay bạn, chỉ sớm hơn mà thôi."
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "name": "Áp dụng thực tế",
+   "start": 204.89,
+   "end": 233.13,
+   "subs": [
+    {
+     "t0": 205.29,
+     "t1": 208.89,
+     "text": "Áp dụng thế nào? Nối file này vào cuối CLAUDE.md của dự án."
+    },
+    {
+     "t0": 209.24,
+     "t1": 211.72,
+     "text": "Có bản plugin, nhưng tôi mới thử dạng file."
+    },
+    {
+     "t0": 212.07,
+     "t1": 216.47,
+     "text": "Nên dùng ở những chỗ một giả định sai rất đắt: tiền, dữ liệu khách hàng, chính sách."
+    },
+    {
+     "t0": 216.82,
+     "t1": 222.42,
+     "text": "Với việc vặt hay bản làm thử, tác giả cũng nói rõ: file này ưu tiên cẩn thận hơn tốc độ, hãy tự cân nhắc."
+    },
+    {
+     "t0": 222.77,
+     "t1": 227.17,
+     "text": "Mẹo quan trọng nhất: thêm luật riêng, ví dụ mọi thay đổi liên quan đến tiền phải hỏi trước."
+    },
+    {
+     "t0": 227.52,
+     "t1": 232.08,
+     "text": "Và đo hiệu quả bằng phần thay đổi trong code: nhỏ hơn, và câu hỏi đến trước khi viết."
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "name": "Kết",
+   "start": 233.13,
+   "end": 242.27,
+   "subs": [
+    {
+     "t0": 233.53,
+     "t1": 236.01,
+     "text": "Sáu mươi lăm dòng text không làm AI thông minh hơn."
+    },
+    {
+     "t0": 236.36,
+     "t1": 239.32,
+     "text": "Nó làm AI biết dừng lại, và biết viết ít đi."
+    }
+   ]
+  }
+ ]
+}
