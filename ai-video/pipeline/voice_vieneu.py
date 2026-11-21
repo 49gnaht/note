@@ -48,7 +48,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("src"); ap.add_argument("dst"); ap.add_argument("audio")
     ap.add_argument("--voice", default="Hải Đăng"); ap.add_argument("--cache", default="tts")
+    ap.add_argument("--script", help="script .md; its '## Bảng phiên âm' table (| Viết | Đọc |) is added to PHON")
     a = ap.parse_args()
+    if a.script:
+        table = open(a.script, encoding="utf-8").read().split("## Bảng phiên âm", 1)[-1]
+        extra = [(m[0].strip(), m[1].strip()) for m in re.findall(r"^\|([^|]+)\|([^|]+)\|\s*$", table, re.M)
+                 if m[0].strip() not in ("Viết", "---") and not set(m[0].strip()) <= set("-: ")]
+        known = {w for w, _ in PHON}
+        PHON[:] = sorted(PHON + [e for e in extra if e[0] not in known], key=lambda x: -len(x[0]))
     os.makedirs(a.cache, exist_ok=True)
     tl = json.load(open(a.src))
     tts = None
