@@ -64,6 +64,9 @@ Render 4 phút ở 1080p/30fps mất khoảng 8 phút. Trước khi render cả 
 **Giọng đọc (VieNeu-TTS)**
 - Tạo giọng **theo từng câu**. Câu dưới 7 chữ phải gộp với câu bên cạnh, nếu không sẽ bị đọc lơ lớ.
 - **Thay từ mượn bằng tiếng Việt** thay vì phiên âm: `diff` bị đọc thành "đít", `ship` thành "xít", `bug` thành "bức", `shop` thành "xúc". Cụm "mặc định" bị nghe thành "mắc bệnh", đã thay bằng "đề xuất".
+- **Phiên âm chữ cái không dùng dấu gạch nối** (video 02): "E-R-P Nếch" bị đọc thành "E gạch nối R gạch nối P". Viết cách nhau bằng dấu cách: "e rờ pê nếch", "ây pi ai".
+- Truyền `--script script.md` cho `voice_vieneu.py` để dùng bảng phiên âm ở cuối kịch bản (`## Bảng phiên âm`).
+- Tên tự đặt (như "Graphify") thì Whisper gần như luôn chép sai. Nếu tên đã hiện trên hình thì bỏ qua những câu điểm thấp chỉ vì tên.
 - Khoảng nghỉ 0,35 giây giữa các câu và 1,1 giây giữa các cảnh. Giọng Hải Đăng đọc khoảng 4,4 âm tiết/giây.
 - Kết quả soát bằng Whisper medium: trung bình 0,86. Câu điểm thấp chủ yếu do Whisper viết số bằng chữ số hoặc nghe sai tên riêng, không phải lỗi đọc.
 
