@@ -6,6 +6,7 @@ Mọi bước chạy trong container cloud. Chỉ bước thí nghiệm và revi
 | Video | Repo | Kết quả |
 |---|---|---|
 | [01](videos/01-karpathy-claude-md/) | multica-ai/andrej-karpathy-skills | 4:02 · 21 lượt A/B · review 5,8 → 7,5 → 8,0 |
+| [02](videos/02-graphify/) | Graphify-Labs/graphify | ~4:00 · 22 lần chạy, 2 codebase · review 6,2 → 7,5 → v3 |
 
 ## Quy trình (video 01 mất khoảng nửa ngày)
 

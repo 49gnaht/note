@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>Graphify review</title>
+<style>
+:root{--bg:#0e1014;--panel:#171a21;--line:#262b36;--fg:#eef1f6;--mute:#8b93a5;--amber:#f5a524;--teal:#33c9a0;--red:#ff6161;--blue:#6aa8ff;--violet:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:var(--fg);font-family:Inter,sans-serif}
+.scene{position:absolute;inset:0;padding:90px 120px 200px;display:none}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-ligatures:none;font-feature-settings:"calt" 0,"liga" 0}
+.h{font-weight:800;letter-spacing:-.02em}.mute{color:var(--mute)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px}
+.card{padding:34px 40px}.row{display:flex;gap:30px}.col{flex:1}
+#sub{position:absolute;left:160px;right:160px;bottom:56px;text-align:center;font-size:42px;line-height:1.35;font-weight:600;text-shadow:0 2px 10px #000}
+#sub span{background:rgba(0,0,0,.55);padding:6px 18px;border-radius:10px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#prog{position:absolute;left:0;top:0;height:6px;background:var(--violet)}
+#chip{position:absolute;right:48px;top:36px;font-size:22px;color:var(--mute)}
+.big{font-size:150px;font-weight:800;letter-spacing:-.03em}
+.cap{position:absolute;left:120px;right:120px;bottom:150px;font-size:24px;color:var(--mute)}
+table.sc{border-collapse:collapse;width:100%;font-size:32px}
+table.sc td,table.sc th{padding:12px 18px;border-bottom:1px solid var(--line);text-align:left}
+table.sc th{color:var(--mute);font-weight:600;font-size:26px}
+.ok{color:var(--teal);font-weight:700}.warn{color:var(--amber);font-weight:700}
+.term{font-size:26px;line-height:1.55;white-space:pre}
+.tl{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}.tl div{padding:10px 14px;border-radius:10px;font-size:22px;background:#232834}
+.tl .g{background:rgba(167,139,250,.25);outline:2px solid var(--violet)}.tl .n{background:rgba(245,165,36,.2);outline:2px dashed var(--amber)}
+.node{position:absolute;border-radius:50%;background:var(--violet)}
+</style></head><body>
+<div id="prog"></div><div id="chip">Review repo · Graphify-Labs/graphify</div>
+
+<!-- 1 HOOK -->
+<section class="scene" id="s1">
+ <div id="s1a" style="text-align:center;margin-top:40px">
+  <div class="big">★ <span id="s1stars">0</span></div>
+  <div class="h" style="font-size:64px;margin-top:10px">Graphify <span class="mute" style="font-size:34px;font-weight:600">· YC S26</span></div>
+  <div class="mono mute" style="font-size:32px;margin-top:20px">"query instead of grepping"</div>
+ </div>
+ <div id="s1b" class="panel card" style="width:1100px;margin:30px auto 0">
+  <div class="mute" style="font-size:24px">Mô hình lớn · 5 câu hỏi · 2 codebase</div>
+  <table class="sc" style="margin-top:8px"><tr><th></th><th>Không có đồ thị</th><th>Có đồ thị</th></tr>
+   <tr><td>Điểm</td><td class="ok">✓ tối đa</td><td class="ok">✓ tối đa</td></tr></table>
+ </div>
+ <div id="s1c" style="position:absolute;left:0;right:0;top:760px;text-align:center;font-size:40px" class="h warn">Haiku: rẻ hơn ~19 lần (giá API)</div>
+</section>
+
+<!-- 2 WHAT -->
+<section class="scene" id="s2">
+ <div class="row" style="align-items:center">
+  <div class="panel card mono" id="s2a" style="font-size:28px;line-height:1.7;width:470px">src/<br>├─ billing.py<br>├─ ledger.py<br>└─ stock.py</div>
+  <div id="s2arrow" class="h" style="font-size:60px;color:var(--violet)">→<div class="mute" style="font-size:20px">tree-sitter · trên máy</div></div>
+  <div class="panel" id="s2graph" style="width:700px;height:420px;position:relative"></div>
+ </div>
+ <div class="row" id="s2cmds" style="margin-top:34px">
+  <div class="panel card mono col" style="font-size:28px">graphify query <span class="mute">"…"</span></div>
+  <div class="panel card mono col" style="font-size:28px">graphify path <span class="mute">A B</span></div>
+  <div class="panel card mono col" style="font-size:28px">graphify explain <span class="mute">X</span></div>
+ </div>
+ <div class="row" style="margin-top:26px">
+  <div id="s2hook" class="panel card col" style="font-size:26px;border-color:var(--amber)">Claude Code: hướng dẫn trong <span class="mono">CLAUDE.md</span> + lời nhắc tự động trước Grep/Read <span class="mute">(vài lần mỗi phiên)</span></div>
+  <div id="s2free" class="panel card col" style="font-size:26px">Phần mã nguồn: <b class="ok">không gọi LLM, $0</b><br><span class="mute">docs / PDF / ảnh: cần LLM</span></div>
+ </div>
+</section>
+
+<!-- 3 THEIR BENCH -->
+<section class="scene" id="s3">
+ <div class="mute" style="font-size:30px">BENCHMARKS.md của Graphify · ERPNext</div>
+ <div class="row" style="align-items:flex-end;margin-top:50px;gap:80px">
+  <div><div class="mute" style="font-size:30px">grep / read</div><div class="big" id="s3a">70,8%</div></div>
+  <div class="big" style="color:var(--violet)">→</div>
+  <div><div class="mute" style="font-size:30px">+ graphify</div><div class="big ok" id="s3b">82,0%</div></div>
+ </div>
+ <div id="s3c" style="font-size:30px;margin-top:40px" class="mute">key-fact coverage · Claude Opus 4.8 · harness riêng · graphify là một tool · n = 6</div>
+</section>
+
+<!-- 4 SETUP -->
+<section class="scene" id="s4">
+ <div class="row" id="s4cb">
+  <div class="panel card col"><div class="h" style="font-size:44px">Graphify <span class="mute" style="font-size:28px">(chính nó)</span></div><div style="font-size:30px;margin-top:10px">~106k dòng Python · graph <b>40 giây</b></div><div class="mute" style="font-size:24px">27.100 nút · 57.475 cạnh</div></div>
+  <div class="panel card col"><div class="h" style="font-size:44px">ERPNext</div><div style="font-size:30px;margin-top:10px">~573k dòng Python · graph <b>102 giây</b></div><div class="mute" style="font-size:24px">40.332 nút · 109.161 cạnh · chưa tính JS</div></div>
+ </div>
+ <div id="s4q" style="margin-top:30px;font-size:28px;line-height:1.75">
+  <div>① <span class="mono">graphify update .</span> → graph.json: chuỗi hàm</div>
+  <div>② Sửa <span class="mono">_weakest_shortest_path</span> ảnh hưởng lệnh nào <span class="mute">(có bẫy)</span></div>
+  <div>③ <span class="mono">shortest_path</span> chọn đường nào khi hòa</div>
+  <div>④ Gửi hóa đơn bán hàng → ghi sổ cái (GL Entry)</div>
+  <div>⑤ Mọi lớp kế thừa <span class="mono">StockController</span> qua 3 tầng <span class="mute">(22 lớp)</span></div>
+ </div>
+ <div class="row" id="s4ab" style="margin-top:24px">
+  <div class="panel card col" style="font-size:30px">A · Claude Code bình thường</div>
+  <div class="panel card col" style="font-size:30px;border-color:var(--violet)">B · + đồ thị, hướng dẫn, lời nhắc</div>
+ </div>
+ <div class="cap" id="s4cap">22 lần chạy · chạy tự động · CLAUDE.md đưa vào system prompt · minh họa, không phải benchmark</div>
+</section>
+
+<!-- 5 RESULT BIG MODEL -->
+<section class="scene" id="s5">
+ <div class="panel card" id="s5t">
+  <table class="sc"><tr><th>Câu</th><th>A · không đồ thị</th><th>B · có đồ thị</th></tr>
+  <tr><td>① chuỗi hàm update</td><td class="ok">9/9</td><td class="ok">9/9</td></tr>
+  <tr><td>② ảnh hưởng (có bẫy)</td><td class="ok">2/2</td><td class="ok">2/2</td></tr>
+  <tr><td>③ chọn đường</td><td class="ok">6/6</td><td class="ok">6/6</td></tr>
+  <tr><td>④ hóa đơn → sổ cái</td><td class="ok">7/7 · 7/7</td><td class="ok">7/7 · 7/7</td></tr>
+  <tr><td>⑤ 22 lớp kế thừa</td><td class="ok">22 · 22</td><td class="ok">22 · 22</td></tr></table>
+  <div id="s5m" style="font-size:28px;margin-top:14px">Thời gian tb <b>49s</b> vs <b>52s</b> · Chi phí tb <b>$0,30</b> vs <b>$0,33</b> <span class="mute">(giá API)</span></div>
+ </div>
+ <div id="s5tl" style="margin-top:26px"><div class="mute" style="font-size:24px">Một lần chạy có đồ thị (câu ①), theo thứ tự:</div>
+  <div class="tl"><div class="g">graphify query</div><div>Grep</div><div class="n">lời nhắc</div><div>Grep</div><div>Read</div><div>Read</div><div>Grep</div><div>Grep</div><div>Read</div><div>Read</div><div>Read</div><div>Grep</div><div>…</div></div></div>
+</section>
+
+<!-- 6 WHY -->
+<section class="scene" id="s6">
+ <div class="row">
+  <div class="panel card mono col" id="s6q" style="font-size:20px;line-height:1.5;white-space:pre-wrap;overflow:hidden;height:470px"><span class="ok">$ graphify query "…update…graph.json"</span>
+<span class="warn">778 nodes found
+[!] TRUNCATED: showing 62 of 778 nodes</span>
+NODE graphify() [src=<b class="warn">graphify/pi/index.ts</b>]
+NODE graphify command dispatch… [src=graphify/cli.py]
+NODE .update() [src=graphify/_minhash.py]
+NODE .json() [src=<b class="warn">worked/httpx/raw/models.py</b>]
+NODE write() [src=<b class="warn">tests/test_trailing_newline…py</b>]
+…</div>
+  <div class="panel card mono col" id="s6e" style="font-size:22px;line-height:1.6;height:470px"><span class="ok">$ graphify explain StockController --all</span>
+<div style="margin-top:8px">&lt;-- StockEntry <span class="mute">[inherits] EXTRACTED</span><br>&lt;-- SubcontractingController <span class="mute">[inherits]</span><br>&lt;-- SellingController <span class="mute">[inherits]</span><br>&lt;-- StockReconciliation <span class="mute">[inherits]</span><br>&lt;-- AssetCapitalization <span class="mute">[inherits]</span><br>&lt;-- SerialNo <span class="mute">[inherits]</span></div>
+<div class="warn" style="margin-top:10px;font-family:Inter;font-size:22px">không có --all: chỉ 20 kết nối, thiếu SerialNo</div></div>
+ </div>
+ <div class="row" id="s6why" style="margin-top:26px">
+  <div class="panel card col" style="font-size:28px">Câu hỏi có sẵn <b>tên hàm, tên lớp</b> → tìm kiếm văn bản đi thẳng tới đích</div>
+  <div class="panel card col" style="font-size:28px">Bài đo của họ: <b>mô hình cũ hơn</b>, câu hỏi và cách chấm khác → không so trực tiếp</div>
+ </div>
+</section>
+
+<!-- 7 HAIKU -->
+<section class="scene" id="s7">
+ <div class="panel card" id="s7t" style="width:1200px">
+  <div class="mute" style="font-size:24px">Haiku 5.5 · 4 câu · mỗi ô 1 lần chạy</div>
+  <table class="sc"><tr><th>Câu</th><th>A · không đồ thị</th><th>B · có đồ thị</th></tr>
+  <tr><td>①</td><td class="ok">9/9</td><td class="warn">8/9</td></tr><tr><td>②</td><td class="ok">2/2</td><td class="ok">2/2</td></tr>
+  <tr><td>④</td><td class="ok">7/7</td><td class="ok">7/7</td></tr><tr><td>⑤</td><td class="ok">22/22</td><td class="ok">22/22</td></tr></table>
+ </div>
+ <div class="panel card" id="s7c" style="position:absolute;right:120px;top:300px;width:520px;text-align:center;border-color:var(--amber)">
+  <div class="h" style="font-size:70px">~19×</div><div style="font-size:30px">rẻ hơn</div>
+  <div class="mute" style="font-size:24px;margin-top:10px">$0,017 vs $0,33 mỗi câu<br>cùng 4 câu · không đồ thị · giá API</div>
+ </div>
+ <div id="s7w" class="warn" style="font-size:28px;margin-top:30px">Mỗi câu 1 lần chạy → tín hiệu, chưa phải kết luận</div>
+</section>
+
+<!-- 8 HOW TO -->
+<section class="scene" id="s8">
+ <div class="panel card mono term" id="s8t" style="font-size:21px"><span class="ok">uv tool install graphifyy</span>                          <span class="mute"># hai chữ y</span>
+<span class="ok">printf "tests/\ntest_*.py\n" >> .graphifyignore</span>     <span class="mute"># bỏ file kiểm thử, trước khi dựng</span>
+<span class="ok">graphify update .</span>                                  <span class="mute"># phần code, không cần API key</span>
+<span class="ok">graphify claude install</span>                            <span class="mute"># hướng dẫn + lời nhắc cho Claude Code</span>
+<span class="ok">graphify explain "StockController" --all</span>
+<span class="ok">graphify path "erpnext/accounts/doctype/sales_invoice/sales_invoice.py::SalesInvoice" \
+              "erpnext/accounts/general_ledger.py::make_entry"</span>
+<span class="warn">tên ngắn "make_entry" → Ambiguous: 5 nút trùng tên</span></div>
+ <div class="panel card mono" id="s8p" style="margin-top:22px;font-size:22px;line-height:1.6;border-color:var(--amber)">SalesInvoice → .make_gl_entries() → <b class="warn">make_reverse_gl_entries()</b> → make_entry()
+<div style="font-family:Inter;font-size:24px" class="warn">Đường ngắn nhất đi qua nhánh <b>hủy</b> chứng từ, không phải nhánh gửi hóa đơn</div></div>
+ <div class="row" style="margin-top:22px">
+  <div class="panel card col" id="s8h" style="font-size:26px">Trang <span class="mono">graph.html</span>: có thể giúp người mới thấy bức tranh tổng thể <span class="mute">(chưa đo)</span></div>
+  <div class="panel card col" id="s8n" style="font-size:26px"><span class="mute">Chưa đo:</span> chế độ <span class="mono">--strict</span> · MCP server · phiên dài nhiều câu hỏi</div>
+ </div>
+</section>
+
+<!-- 9 END -->
+<section class="scene" id="s9">
+ <div style="text-align:center;margin-top:180px">
+  <div class="h" style="font-size:72px;line-height:1.25" id="s9t">Đừng tin số sao.<br>Đừng tin bài đo, <span style="color:var(--violet)">kể cả của tôi.</span></div>
+  <div style="font-size:38px;margin-top:40px" id="s9b">Dựng đồ thị phần mã nguồn: 1–2 phút, $0 → <b>tự thử trên codebase của bạn</b></div>
+  <div class="mute" style="font-size:24px;margin-top:50px" id="s9c">22 lần chạy · 2 codebase · 5 câu hỏi · graphify 0.9.115 · Claude Code 2.1.330 · minh họa, không phải benchmark</div>
+ </div>
+</section>
+
+<div id="sub"><span></span></div>
+<script src="data.js"></script>
+<script>
+const $=id=>document.getElementById(id);const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));const ease=x=>1-Math.pow(1-cl(x),3);
+function ap(el,lt,at,dur=.6,dy=30){if(!el)return;const p=ease((lt-at)/dur);el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px)`;}
+function kids(el,lt,at,step){[...el.children].forEach((c,i)=>ap(c,lt,at+i*step));}
+// decorative graph for scene 2 (deterministic)
+(function(){const g=$('s2graph');let s=7;const r=()=>(s=(s*9301+49297)%233280)/233280;const pts=[];
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('width',700);svg.setAttribute('height',420);svg.style.position='absolute';g.appendChild(svg);
+ for(let i=0;i<34;i++)pts.push([40+r()*620,40+r()*340]);
+ for(let i=0;i<46;i++){const a=pts[Math.floor(r()*34)],b=pts[Math.floor(r()*34)];const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+  l.setAttribute('x1',a[0]);l.setAttribute('y1',a[1]);l.setAttribute('x2',b[0]);l.setAttribute('y2',b[1]);l.setAttribute('stroke','#3a3f55');l.setAttribute('stroke-width','2');l.classList.add('ed');svg.appendChild(l);}
+ pts.forEach((p,i)=>{const n=document.createElement('div');n.className='node';const z=10+(i%5)*5;n.style.cssText+=`width:${z}px;height:${z}px;left:${p[0]-z/2}px;top:${p[1]-z/2}px;background:${['#a78bfa','#33c9a0','#6aa8ff','#f5a524'][i%4]}`;g.appendChild(n);});})();
+const R={
+ 1(lt,d,S){$('s1stars').textContent=(Math.round(ease((lt-.3)/2.2)*1516)/10).toFixed(1).replace('.',',')+'k';ap($('s1a'),lt,0);ap($('s1b'),lt,S(2));ap($('s1c'),lt,S(4));},
+ 2(lt,d,S){ap($('s2a'),lt,.2);ap($('s2arrow'),lt,.8);const p=cl((lt-1.2)/2.5);document.querySelectorAll('#s2graph .node').forEach((n,i)=>n.style.opacity=cl(p*34-i));document.querySelectorAll('#s2graph .ed').forEach((e,i)=>e.style.opacity=cl(p*46-i));
+   kids($('s2cmds'),lt,S(3),.4);ap($('s2free'),lt,S(2));ap($('s2hook'),lt,S(4));},
+ 3(lt,d,S){ap($('s3a'),lt,.3);ap($('s3b'),lt,S(1));ap($('s3c'),lt,S(1)+1);},
+ 4(lt,d,S){kids($('s4cb'),lt,.2,S(1)>1?S(1)-.2:1);kids($('s4q'),lt,S(3),.35);kids($('s4ab'),lt,S(7),.4);ap($('s4cap'),lt,S(7)+1);},
+ 5(lt,d,S){ap($('s5t'),lt,.2);[...$('s5t').querySelectorAll('tr')].forEach((r,i)=>ap(r,lt,.3+i*.35,.4,10));ap($('s5m'),lt,S(2));ap($('s5tl'),lt,S(4));
+   [...document.querySelectorAll('#s5tl .tl div')].forEach((c,i)=>ap(c,lt,S(4)+.3+i*.25,.3,10));},
+ 6(lt,d,S){ap($('s6q'),lt,S(1));ap($('s6e'),lt,S(3));kids($('s6why'),lt,S(4),Math.max(.5,S(6)-S(4)));},
+ 7(lt,d,S){ap($('s7t'),lt,S(1));ap($('s7c'),lt,S(4));ap($('s7w'),lt,S(5));},
+ 8(lt,d,S){ap($('s8t'),lt,S(1));ap($('s8p'),lt,S(3));ap($('s8h'),lt,S(5));ap($('s8n'),lt,S(6));},
+ 9(lt,d,S){ap($('s9t'),lt,.2);ap($('s9b'),lt,S(1));ap($('s9c'),lt,S(1)+1.5);}
+};
+let last='';
+window.seek=function(t){const T=window.TL;$('prog').style.width=(t/T.duration*100)+'%';
+ for(const sc of T.scenes){const el=$('s'+sc.id);const on=t>=sc.start&&t<sc.end;el.style.display=on?'block':'none';
+  if(on){const lt=t-sc.start,d=sc.end-sc.start;const S=k=>{const x=sc.subs[Math.min(k,sc.subs.length-1)];return x?x.t0-sc.start:0;};R[sc.id](lt,d,S);el.style.opacity=cl(lt/.35)*cl((sc.end-t)/.35);}}
+ let s='';for(const sc of T.scenes)for(const x of sc.subs)if(t>=x.t0&&t<x.t1+.15)s=x.text;
+ if(s!==last){const sp=document.querySelector('#sub span');sp.textContent=s;sp.style.display=s?'inline':'none';last=s;}};
+window.seek(0);
+</script></body></html>

@@ -1,0 +1,387 @@
+{
+ "duration": 236.5,
+ "scenes": [
+  {
+   "id": 1,
+   "name": "Hook",
+   "start": 0.0,
+   "end": 22.33,
+   "subs": [
+    {
+     "t0": 0.6,
+     "t1": 6.28,
+     "text": "Một dự án hơn một trăm năm mươi nghìn sao, thuộc khóa S26 của Y Combinator, hứa một điều rất hấp dẫn."
+    },
+    {
+     "t0": 6.63,
+     "t1": 10.15,
+     "text": "Thay vì để AI lục từng file, hãy cho nó một bản đồ của toàn bộ codebase."
+    },
+    {
+     "t0": 10.5,
+     "t1": 14.9,
+     "text": "Tôi cho Claude Code chạy thật hai mươi hai lần, trên hai codebase, với năm câu hỏi khó."
+    },
+    {
+     "t0": 15.25,
+     "t1": 18.37,
+     "text": "Với mô hình lớn, có bản đồ hay không thì điểm số vẫn như nhau."
+    },
+    {
+     "t0": 18.72,
+     "t1": 21.28,
+     "text": "Nhưng điều làm tôi bất ngờ nhất lại nằm ở chỗ khác."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Graphify là gì",
+   "start": 22.33,
+   "end": 52.52,
+   "subs": [
+    {
+     "t0": 22.73,
+     "t1": 26.25,
+     "text": "Graphify đọc mã nguồn của bạn và dựng thành một đồ thị kiến thức."
+    },
+    {
+     "t0": 26.6,
+     "t1": 31.48,
+     "text": "Mỗi hàm, mỗi lớp là một nút, còn quan hệ gọi hàm, kế thừa và nhập thư viện là các cạnh."
+    },
+    {
+     "t0": 31.83,
+     "t1": 36.23,
+     "text": "Với phần mã nguồn, việc dựng đồ thị chạy hoàn toàn trên máy, không tốn tiền gọi mô hình."
+    },
+    {
+     "t0": 36.58,
+     "t1": 41.62,
+     "text": "Sau đó AI có thể truy vấn đồ thị, tìm đường đi giữa hai thành phần, hoặc giải thích một khái niệm."
+    },
+    {
+     "t0": 41.97,
+     "t1": 45.65,
+     "text": "Với Claude Code, Graphify ghi thêm hướng dẫn và một lời nhắc tự động."
+    },
+    {
+     "t0": 46.0,
+     "t1": 49.12,
+     "text": "Khi Claude định tìm kiếm văn bản, nó được nhắc hỏi đồ thị trước,"
+    },
+    {
+     "t0": 49.47,
+     "t1": 51.47,
+     "text": "nhưng chỉ nhắc vài lần trong mỗi phiên làm việc."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Bài đo của họ",
+   "start": 52.52,
+   "end": 66.51,
+   "subs": [
+    {
+     "t0": 52.92,
+     "t1": 57.56,
+     "text": "Graphify có bài đo riêng trên ERPNext, một phần mềm quản lý doanh nghiệp rất lớn."
+    },
+    {
+     "t0": 57.91,
+     "t1": 62.31,
+     "text": "Theo bài đo đó, độ đầy đủ của câu trả lời tăng từ bảy mươi mốt lên tám mươi hai phần trăm."
+    },
+    {
+     "t0": 62.66,
+     "t1": 65.46,
+     "text": "Tôi muốn tự kiểm tra kết quả này trong cách dùng hằng ngày."
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "name": "Thí nghiệm",
+   "start": 66.51,
+   "end": 101.11,
+   "subs": [
+    {
+     "t0": 66.91,
+     "t1": 69.63,
+     "text": "Tôi thử nghiệm trên hai codebase có quy mô rất khác nhau."
+    },
+    {
+     "t0": 69.98,
+     "t1": 73.34,
+     "text": "Thứ nhất là chính mã nguồn của Graphify, khoảng một trăm nghìn dòng,"
+    },
+    {
+     "t0": 73.69,
+     "t1": 76.57,
+     "text": "vừa cập nhật hôm nay nên AI khó trả lời bằng trí nhớ."
+    },
+    {
+     "t0": 76.92,
+     "t1": 80.92,
+     "text": "Thứ hai là ERPNext, với hơn năm trăm nghìn dòng mã Python."
+    },
+    {
+     "t0": 81.27,
+     "t1": 83.99,
+     "text": "Năm câu hỏi đều phải lần theo mã nguồn qua nhiều file khác nhau."
+    },
+    {
+     "t0": 84.34,
+     "t1": 87.46,
+     "text": "Ví dụ, từ lúc gửi một hóa đơn bán hàng đến lúc ghi sổ cái."
+    },
+    {
+     "t0": 87.81,
+     "t1": 90.13,
+     "text": "Hay liệt kê mọi lớp kế thừa qua ba tầng."
+    },
+    {
+     "t0": 90.48,
+     "t1": 93.6,
+     "text": "Đáp án tôi tự kiểm chứng bằng cách đọc code và phân tích cú pháp."
+    },
+    {
+     "t0": 93.95,
+     "t1": 96.19,
+     "text": "Mỗi câu chạy hai cách: Claude Code bình thường,"
+    },
+    {
+     "t0": 96.54,
+     "t1": 100.06,
+     "text": "và Claude Code có đồ thị cùng hướng dẫn và lời nhắc của Graphify."
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "name": "Kết quả với mô hình lớn",
+   "start": 101.11,
+   "end": 123.54,
+   "subs": [
+    {
+     "t0": 101.51,
+     "t1": 103.59,
+     "text": "Với mô hình lớn, kết quả hòa tuyệt đối."
+    },
+    {
+     "t0": 103.94,
+     "t1": 105.86,
+     "text": "Cả hai cách đều trả lời đúng mọi ý,"
+    },
+    {
+     "t0": 106.21,
+     "t1": 110.05,
+     "text": "kể cả câu có bẫy là các lớp trùng tên trong mã JavaScript."
+    },
+    {
+     "t0": 110.4,
+     "t1": 112.56,
+     "text": "Thời gian và chi phí cũng gần như bằng nhau."
+    },
+    {
+     "t0": 112.91,
+     "t1": 114.83,
+     "text": "Điều thú vị là cách Claude làm việc."
+    },
+    {
+     "t0": 115.18,
+     "t1": 119.02,
+     "text": "Khi có đồ thị, nó luôn hỏi đồ thị một hai lần ở đầu, đúng như hướng dẫn."
+    },
+    {
+     "t0": 119.37,
+     "t1": 122.49,
+     "text": "Sau đó nó quay về tìm kiếm văn bản và đọc file như bình thường."
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "name": "Vì sao?",
+   "start": 123.54,
+   "end": 163.05,
+   "subs": [
+    {
+     "t0": 123.94,
+     "t1": 126.82,
+     "text": "Theo tôi, có hai lý do chính dẫn đến kết quả này."
+    },
+    {
+     "t0": 127.17,
+     "t1": 129.33,
+     "text": "Thứ nhất, truy vấn bằng câu tự nhiên khá nhiễu."
+    },
+    {
+     "t0": 129.68,
+     "t1": 133.76,
+     "text": "Với câu hỏi đầu tiên, đồ thị tìm ra gần tám trăm nút nhưng chỉ hiện khoảng sáu mươi."
+    },
+    {
+     "t0": 134.11,
+     "t1": 137.79,
+     "text": "Trong số đó lẫn cả mã TypeScript và file kiểm thử không liên quan."
+    },
+    {
+     "t0": 138.14,
+     "t1": 141.5,
+     "text": "Ngược lại, hỏi theo đúng tên một lớp thì đồ thị trả lời chính xác,"
+    },
+    {
+     "t0": 141.85,
+     "t1": 145.53,
+     "text": "miễn là nhớ thêm tùy chọn hiện tất cả để danh sách không bị cắt bớt."
+    },
+    {
+     "t0": 145.88,
+     "t1": 149.32,
+     "text": "Thứ hai, câu hỏi của tôi thường có sẵn tên hàm, tên lớp,"
+    },
+    {
+     "t0": 149.67,
+     "t1": 151.43,
+     "text": "nên tìm kiếm văn bản đi thẳng tới đích."
+    },
+    {
+     "t0": 151.78,
+     "t1": 155.3,
+     "text": "Cả hai cách đều đạt điểm tối đa, không còn chỗ cho đồ thị cải thiện."
+    },
+    {
+     "t0": 155.65,
+     "t1": 159.41,
+     "text": "Bài đo của Graphify dùng mô hình cũ hơn, câu hỏi và cách chấm khác,"
+    },
+    {
+     "t0": 159.76,
+     "t1": 162.0,
+     "text": "nên không thể so trực tiếp hai con số."
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "name": "Mô hình nhỏ",
+   "start": 163.05,
+   "end": 189.99,
+   "subs": [
+    {
+     "t0": 163.45,
+     "t1": 166.01,
+     "text": "Vậy đồ thị có giúp mô hình nhỏ đỡ lạc hơn không?"
+    },
+    {
+     "t0": 166.36,
+     "t1": 170.2,
+     "text": "Tôi chạy lại bốn câu bằng Haiku, mô hình nhỏ và rẻ nhất, mỗi cách một lần."
+    },
+    {
+     "t0": 170.55,
+     "t1": 173.99,
+     "text": "Khi có đồ thị, Haiku hỏi đồ thị nhiều hơn, nhưng điểm không tăng,"
+    },
+    {
+     "t0": 174.34,
+     "t1": 175.94,
+     "text": "còn thiếu một ý ở một câu."
+    },
+    {
+     "t0": 176.29,
+     "t1": 177.89,
+     "text": "Và đây là điều tôi không ngờ nhất."
+    },
+    {
+     "t0": 178.24,
+     "t1": 181.36,
+     "text": "Không có đồ thị, Haiku vẫn trả lời đúng mọi ý trong bốn câu,"
+    },
+    {
+     "t0": 181.71,
+     "t1": 184.59,
+     "text": "với chi phí theo giá API rẻ hơn khoảng mười chín lần."
+    },
+    {
+     "t0": 184.94,
+     "t1": 188.94,
+     "text": "Mỗi câu chỉ chạy một lần, nên hãy coi đây là tín hiệu, chưa phải kết luận."
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "name": "Dùng Graphify thế nào cho đáng",
+   "start": 189.99,
+   "end": 222.85,
+   "subs": [
+    {
+     "t0": 190.39,
+     "t1": 193.27,
+     "text": "Nếu dùng Graphify, đây là cách tôi sẽ làm."
+    },
+    {
+     "t0": 193.62,
+     "t1": 197.22,
+     "text": "Cài đúng gói có hai chữ y, khai báo bỏ các file kiểm thử cho đỡ nhiễu,"
+    },
+    {
+     "t0": 197.57,
+     "t1": 199.41,
+     "text": "rồi mới dựng đồ thị cho phần mã nguồn."
+    },
+    {
+     "t0": 199.76,
+     "t1": 203.92,
+     "text": "Khi hỏi, hãy dùng giải thích và tìm đường theo tên chính xác thay vì câu tự nhiên."
+    },
+    {
+     "t0": 204.27,
+     "t1": 206.83,
+     "text": "Nhưng hãy đọc thật kỹ kết quả mà đồ thị trả về."
+    },
+    {
+     "t0": 207.18,
+     "t1": 212.06,
+     "text": "Đường ngắn nhất từ hóa đơn đến hàm ghi sổ lại đi qua nhánh hủy chứng từ, không phải nhánh gửi hóa đơn."
+    },
+    {
+     "t0": 212.41,
+     "t1": 217.05,
+     "text": "Trang đồ thị trực quan có thể giúp người mới nhìn ra bức tranh tổng thể, dù tôi chưa đo điều này."
+    },
+    {
+     "t0": 217.4,
+     "t1": 221.8,
+     "text": "Tôi chưa đo chế độ bắt buộc dùng đồ thị, cũng chưa đo phiên làm việc dài với nhiều câu hỏi."
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "name": "Kết",
+   "start": 222.85,
+   "end": 236.5,
+   "subs": [
+    {
+     "t0": 223.25,
+     "t1": 226.45,
+     "text": "Đừng tin số sao, cũng đừng tin bài đo, kể cả bài đo của tôi."
+    },
+    {
+     "t0": 226.8,
+     "t1": 230.88,
+     "text": "Dựng đồ thị cho phần mã nguồn chỉ mất một đến hai phút và không tốn tiền,"
+    },
+    {
+     "t0": 231.23,
+     "t1": 233.55,
+     "text": "nên hãy tự thử trên chính codebase của bạn."
+    }
+   ]
+  }
+ ]
+}

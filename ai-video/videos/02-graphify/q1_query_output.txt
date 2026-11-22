@@ -1,0 +1,58 @@
+ARCHITECTURE.md
+BENCHMARKS.md
+CHANGELOG.md
+CLAUDE.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+Dockerfile
+GEMINI.md
+LICENSE
+LICENSE-MIT
+NOTICE
+README.md
+RELEASING.md
+SECURITY.md
+SUPPORT.md
+docs
+gemini-extension.json
+graphify
+graphify-out
+pyproject.toml
+scripts
+tests
+tools
+uv.lock
+worked
+GRAPH_REPORT.md
+cache
+graph.html
+graph.json
+manifest.json
+Graph: graphify-out/graph.json (27100 nodes) | Traversal: BFS depth=2 | Start: ['graphify()', 'graphify command dispatch — every non-install subcommand. Extracted verbatim…', 'graphify CLI - `graphify install` sets up the Claude Code skill.', '.update()', '.json()', 'entry', 'point', 'cli()', 'Graph', '(command, node lines) for a nudge: nodes whose label matches the searched…', 'Writing a file with → ✅ ≥ then passing its content through _call_claude_cli…', 'callflow_html.py'] | 778 nodes found
+
+[!] TRUNCATED: showing 62 of 778 nodes (~2000-token budget). The answer may be among the 716 cut nodes — raise the token budget to 26597 to get all 778 (CLI: --budget 26597, MCP: token_budget=26597) or narrow the query (e.g. context_filter=['call'], or get_node for a specific symbol).
+
+NODE graphify() [src=graphify/pi/index.ts loc=L109 community=index.ts]
+NODE graphify command dispatch — every non-install subcommand. Extracted verbatim… [src=graphify/cli.py loc=L1 community=cli.py]
+NODE (command, node lines) for a nudge: nodes whose label matches the searched… [src=graphify/cli.py loc=L319 community=cli.py]
+NODE graphify CLI - `graphify install` sets up the Claude Code skill. [src=graphify/__main__.py loc=L1 community=graphify/__main__.py]
+NODE callflow_html.py [src=graphify/callflow_html.py loc=L1 community=callflow_html.py]
+NODE entry [src=.pre-commit-config.yaml loc=L13 community=hooks]
+NODE point [src=tests/fixtures/sample.f90 loc=L7 community=geometry]
+NODE cli() [src=tests/test_rust_use_trees.py loc=L155 community=cli]
+NODE Graph [src= loc= community=serve.py]
+NODE Writing a file with → ✅ ≥ then passing its content through _call_claude_cli… [src=tests/test_charmap_encoding.py loc=L106 community=_call_claude_cli]
+NODE .update() [src=graphify/_minhash.py loc=L46 community=test_minhash.py]
+NODE .json() [src=worked/httpx/raw/models.py loc=L91 community=Response]
+NODE installedCommand() [src=graphify/pi/index.ts loc=L87 community=index.ts]
+NODE index.ts [src=graphify/pi/index.ts loc=L1 community=index.ts]
+NODE isRemote() [src=graphify/pi/index.ts loc=L44 community=index.ts]
+NODE localPath() [src=graphify/pi/index.ts loc=L59 community=index.ts]
+NODE runGuard() [src=graphify/pi/index.ts loc=L97 community=index.ts]
+NODE which() [src=graphify/pi/index.ts loc=L69 community=index.ts]
+NODE RFC-8089 [src=graphify/pi/index.ts loc=L41 community=index.ts]
+NODE HostAPI [src=graphify/pi/index.ts loc=L34 community=index.ts]
+NODE HostContext [src=graphify/pi/index.ts loc=L28 community=index.ts]
+NODE HostEvent [src=graphify/pi/index.ts loc=L27 community=index.ts]
+NODE TOOL_NAMES [src=graphify/pi/index.ts loc=L18 community=index.ts]
+NODE d

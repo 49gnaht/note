@@ -1,0 +1,247 @@
+1
+00:00:00,600 --> 00:00:06,280
+Một dự án hơn một trăm năm mươi nghìn sao, thuộc khóa S26 của Y Combinator, hứa một điều rất hấp dẫn.
+
+2
+00:00:06,630 --> 00:00:10,150
+Thay vì để AI lục từng file, hãy cho nó một bản đồ của toàn bộ codebase.
+
+3
+00:00:10,500 --> 00:00:14,900
+Tôi cho Claude Code chạy thật hai mươi hai lần, trên hai codebase, với năm câu hỏi khó.
+
+4
+00:00:15,250 --> 00:00:18,370
+Với mô hình lớn, có bản đồ hay không thì điểm số vẫn như nhau.
+
+5
+00:00:18,720 --> 00:00:21,280
+Nhưng điều làm tôi bất ngờ nhất lại nằm ở chỗ khác.
+
+6
+00:00:22,730 --> 00:00:26,250
+Graphify đọc mã nguồn của bạn và dựng thành một đồ thị kiến thức.
+
+7
+00:00:26,600 --> 00:00:31,480
+Mỗi hàm, mỗi lớp là một nút, còn quan hệ gọi hàm, kế thừa và nhập thư viện là các cạnh.
+
+8
+00:00:31,830 --> 00:00:36,230
+Với phần mã nguồn, việc dựng đồ thị chạy hoàn toàn trên máy, không tốn tiền gọi mô hình.
+
+9
+00:00:36,580 --> 00:00:41,620
+Sau đó AI có thể truy vấn đồ thị, tìm đường đi giữa hai thành phần, hoặc giải thích một khái niệm.
+
+10
+00:00:41,970 --> 00:00:45,650
+Với Claude Code, Graphify ghi thêm hướng dẫn và một lời nhắc tự động.
+
+11
+00:00:46,000 --> 00:00:49,120
+Khi Claude định tìm kiếm văn bản, nó được nhắc hỏi đồ thị trước,
+
+12
+00:00:49,470 --> 00:00:51,470
+nhưng chỉ nhắc vài lần trong mỗi phiên làm việc.
+
+13
+00:00:52,920 --> 00:00:57,560
+Graphify có bài đo riêng trên ERPNext, một phần mềm quản lý doanh nghiệp rất lớn.
+
+14
+00:00:57,910 --> 00:01:02,310
+Theo bài đo đó, độ đầy đủ của câu trả lời tăng từ bảy mươi mốt lên tám mươi hai phần trăm.
+
+15
+00:01:02,660 --> 00:01:05,460
+Tôi muốn tự kiểm tra kết quả này trong cách dùng hằng ngày.
+
+16
+00:01:06,910 --> 00:01:09,630
+Tôi thử nghiệm trên hai codebase có quy mô rất khác nhau.
+
+17
+00:01:09,980 --> 00:01:13,340
+Thứ nhất là chính mã nguồn của Graphify, khoảng một trăm nghìn dòng,
+
+18
+00:01:13,690 --> 00:01:16,570
+vừa cập nhật hôm nay nên AI khó trả lời bằng trí nhớ.
+
+19
+00:01:16,920 --> 00:01:20,920
+Thứ hai là ERPNext, với hơn năm trăm nghìn dòng mã Python.
+
+20
+00:01:21,270 --> 00:01:23,990
+Năm câu hỏi đều phải lần theo mã nguồn qua nhiều file khác nhau.
+
+21
+00:01:24,340 --> 00:01:27,460
+Ví dụ, từ lúc gửi một hóa đơn bán hàng đến lúc ghi sổ cái.
+
+22
+00:01:27,810 --> 00:01:30,130
+Hay liệt kê mọi lớp kế thừa qua ba tầng.
+
+23
+00:01:30,480 --> 00:01:33,600
+Đáp án tôi tự kiểm chứng bằng cách đọc code và phân tích cú pháp.
+
+24
+00:01:33,950 --> 00:01:36,190
+Mỗi câu chạy hai cách: Claude Code bình thường,
+
+25
+00:01:36,540 --> 00:01:40,060
+và Claude Code có đồ thị cùng hướng dẫn và lời nhắc của Graphify.
+
+26
+00:01:41,510 --> 00:01:43,590
+Với mô hình lớn, kết quả hòa tuyệt đối.
+
+27
+00:01:43,940 --> 00:01:45,860
+Cả hai cách đều trả lời đúng mọi ý,
+
+28
+00:01:46,210 --> 00:01:50,050
+kể cả câu có bẫy là các lớp trùng tên trong mã JavaScript.
+
+29
+00:01:50,400 --> 00:01:52,560
+Thời gian và chi phí cũng gần như bằng nhau.
+
+30
+00:01:52,910 --> 00:01:54,830
+Điều thú vị là cách Claude làm việc.
+
+31
+00:01:55,180 --> 00:01:59,020
+Khi có đồ thị, nó luôn hỏi đồ thị một hai lần ở đầu, đúng như hướng dẫn.
+
+32
+00:01:59,370 --> 00:02:02,490
+Sau đó nó quay về tìm kiếm văn bản và đọc file như bình thường.
+
+33
+00:02:03,940 --> 00:02:06,820
+Theo tôi, có hai lý do chính dẫn đến kết quả này.
+
+34
+00:02:07,170 --> 00:02:09,330
+Thứ nhất, truy vấn bằng câu tự nhiên khá nhiễu.
+
+35
+00:02:09,680 --> 00:02:13,760
+Với câu hỏi đầu tiên, đồ thị tìm ra gần tám trăm nút nhưng chỉ hiện khoảng sáu mươi.
+
+36
+00:02:14,110 --> 00:02:17,790
+Trong số đó lẫn cả mã TypeScript và file kiểm thử không liên quan.
+
+37
+00:02:18,140 --> 00:02:21,500
+Ngược lại, hỏi theo đúng tên một lớp thì đồ thị trả lời chính xác,
+
+38
+00:02:21,850 --> 00:02:25,530
+miễn là nhớ thêm tùy chọn hiện tất cả để danh sách không bị cắt bớt.
+
+39
+00:02:25,880 --> 00:02:29,320
+Thứ hai, câu hỏi của tôi thường có sẵn tên hàm, tên lớp,
+
+40
+00:02:29,670 --> 00:02:31,430
+nên tìm kiếm văn bản đi thẳng tới đích.
+
+41
+00:02:31,780 --> 00:02:35,300
+Cả hai cách đều đạt điểm tối đa, không còn chỗ cho đồ thị cải thiện.
+
+42
+00:02:35,650 --> 00:02:39,410
+Bài đo của Graphify dùng mô hình cũ hơn, câu hỏi và cách chấm khác,
+
+43
+00:02:39,760 --> 00:02:42,000
+nên không thể so trực tiếp hai con số.
+
+44
+00:02:43,450 --> 00:02:46,010
+Vậy đồ thị có giúp mô hình nhỏ đỡ lạc hơn không?
+
+45
+00:02:46,360 --> 00:02:50,200
+Tôi chạy lại bốn câu bằng Haiku, mô hình nhỏ và rẻ nhất, mỗi cách một lần.
+
+46
+00:02:50,550 --> 00:02:53,990
+Khi có đồ thị, Haiku hỏi đồ thị nhiều hơn, nhưng điểm không tăng,
+
+47
+00:02:54,340 --> 00:02:55,940
+còn thiếu một ý ở một câu.
+
+48
+00:02:56,290 --> 00:02:57,890
+Và đây là điều tôi không ngờ nhất.
+
+49
+00:02:58,240 --> 00:03:01,360
+Không có đồ thị, Haiku vẫn trả lời đúng mọi ý trong bốn câu,
+
+50
+00:03:01,710 --> 00:03:04,590
+với chi phí theo giá API rẻ hơn khoảng mười chín lần.
+
+51
+00:03:04,940 --> 00:03:08,940
+Mỗi câu chỉ chạy một lần, nên hãy coi đây là tín hiệu, chưa phải kết luận.
+
+52
+00:03:10,390 --> 00:03:13,270
+Nếu dùng Graphify, đây là cách tôi sẽ làm.
+
+53
+00:03:13,620 --> 00:03:17,220
+Cài đúng gói có hai chữ y, khai báo bỏ các file kiểm thử cho đỡ nhiễu,
+
+54
+00:03:17,570 --> 00:03:19,410
+rồi mới dựng đồ thị cho phần mã nguồn.
+
+55
+00:03:19,760 --> 00:03:23,920
+Khi hỏi, hãy dùng giải thích và tìm đường theo tên chính xác thay vì câu tự nhiên.
+
+56
+00:03:24,270 --> 00:03:26,830
+Nhưng hãy đọc thật kỹ kết quả mà đồ thị trả về.
+
+57
+00:03:27,180 --> 00:03:32,060
+Đường ngắn nhất từ hóa đơn đến hàm ghi sổ lại đi qua nhánh hủy chứng từ, không phải nhánh gửi hóa đơn.
+
+58
+00:03:32,410 --> 00:03:37,050
+Trang đồ thị trực quan có thể giúp người mới nhìn ra bức tranh tổng thể, dù tôi chưa đo điều này.
+
+59
+00:03:37,400 --> 00:03:41,800
+Tôi chưa đo chế độ bắt buộc dùng đồ thị, cũng chưa đo phiên làm việc dài với nhiều câu hỏi.
+
+60
+00:03:43,250 --> 00:03:46,450
+Đừng tin số sao, cũng đừng tin bài đo, kể cả bài đo của tôi.
+
+61
+00:03:46,800 --> 00:03:50,880
+Dựng đồ thị cho phần mã nguồn chỉ mất một đến hai phút và không tốn tiền,
+
+62
+00:03:51,230 --> 00:03:53,550
+nên hãy tự thử trên chính codebase của bạn.

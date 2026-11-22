@@ -1,0 +1,7 @@
+{
+ "q1": "Khi người dùng chạy `graphify update .`, chuỗi hàm nào được gọi từ entry point của CLI cho đến khi file graph.json được ghi ra đĩa? Liệt kê theo thứ tự, ghi rõ file và tên hàm. Chỉ trả lời, không sửa code.",
+ "q2": "Nếu tôi sửa logic bên trong hàm `_weakest_shortest_path`, những lệnh CLI và tool MCP nào mà người dùng dùng sẽ bị ảnh hưởng? Liệt kê đầy đủ, kèm đường đi từ lệnh/tool đến hàm này. Chỉ trả lời, không sửa code.",
+ "q3": "Khi có nhiều đường đi ngắn nhất dài bằng nhau giữa hai node, tool MCP `shortest_path` chọn đường nào và dựa trên tiêu chí gì? Chỉ ra hàm và file liên quan. Chỉ trả lời, không sửa code.",
+ "e1": "Khi người dùng submit một Sales Invoice, chuỗi hàm nào dẫn tới việc các bản ghi GL Entry (sổ cái) được tạo ra? Liệt kê theo thứ tự, ghi rõ file và tên hàm. Chỉ trả lời, không sửa code.",
+ "e2": "Liệt kê đầy đủ tất cả các class Python (không tính file test) kế thừa trực tiếp hoặc gián tiếp từ StockController, kèm file của từng class. Chỉ trả lời, không sửa code."
+}
