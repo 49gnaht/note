@@ -1209,3 +1209,5 @@
 09-11 10:50:02.138321  5400  5400 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 5400 (test.ivi.map), pid 5400 (test.ivi.map)
 --------- switch to main
 09-11 10:50:02.157305   536  1144 I gps_ql  : Received: '$GNRMC,034943.800,V,,,,,,,110924,,,N,V*27\r'
+
+> Series video **ai-video** (review repo GitHub nhiều sao) đã chuyển sang [49gnaht/AICompany › projects/github-repos](https://github.com/49gnaht/AICompany/tree/main/projects/github-repos) ngày 23/11/2026. Bản gốc vẫn còn ở nhánh `ccr-95e0b28b-djlnn0`.
