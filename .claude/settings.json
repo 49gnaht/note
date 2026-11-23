@@ -1,0 +1,6 @@
+{
+  "extraKnownMarketplaces": {
+    "aicompany": { "source": { "source": "github", "repo": "49gnaht/AICompany" } }
+  },
+  "enabledPlugins": { "youtube@aicompany": true }
+}
